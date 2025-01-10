@@ -14,7 +14,7 @@
 ## 📝 브랜치 목록
 DEFAULT: dev
 - NS-1: README.md 작성 
-- NS-2: 요구사항 작성
+- NS-2: common 모듈 마이그레이션
 - NS-3: 멀티 모듈 구성
 - NS-4: 외부 api 연동
 - NS-5: api 서버 구현

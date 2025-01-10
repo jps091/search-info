@@ -1,7 +1,7 @@
-package com.news.feign
+package com.search.feing
 
+import com.search.feign.NaverClientConfiguration
 import feign.RequestTemplate
-import org.springframework.web.client.RestTemplate
 import spock.lang.Specification
 
 class NaverClientConfigurationTest extends Specification {

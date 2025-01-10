@@ -1,4 +1,4 @@
-package com.news.feign
+package com.search.feign
 
 import feign.RequestTemplate
 import spock.lang.Specification
