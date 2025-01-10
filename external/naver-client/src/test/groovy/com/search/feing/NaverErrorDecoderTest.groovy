@@ -1,20 +1,20 @@
-package com.news.feign
+package com.search.feing
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.news.error.KakaoErrorResponse
-import com.news.exception.ApiException
-import com.news.exception.ErrorType
+import com.search.exception.ApiException
+import com.search.error.ErrorType
+import com.search.error.NaverErrorResponse
+import com.search.feign.NaverErrorDecoder
 import feign.Request
 import feign.Response
-import org.springframework.http.HttpStatus
 import spock.lang.Specification
 
-class KakaoErrorDecoderTest extends Specification {
+class NaverErrorDecoderTest extends Specification {
 
     ObjectMapper objectMapper = Mock()
-    KakaoErrorDecoder errorDecoder = new KakaoErrorDecoder(objectMapper)
+    NaverErrorDecoder errorDecoder = new NaverErrorDecoder(objectMapper)
 
-    def "에러디코더에서 에러발생시 ApiException 예외가 throw 된다."() {
+    def "ErrorDecoder에서 에러 발생시 ApiException 예외가 throw 된다."(){
         given:
         def responseBody = Mock(Response.Body)
         def inputStream = new ByteArrayInputStream()
@@ -25,7 +25,7 @@ class KakaoErrorDecoderTest extends Specification {
                 .build()
 
         1 * responseBody.asInputStream() >> inputStream
-        1 * objectMapper.readValue(*_) >> new KakaoErrorResponse("InvalidArgument", "size is more than max")
+        1 * objectMapper.readValue(*_) >> new NaverErrorResponse("error", "SE03")
 
         when:
         errorDecoder.decode(_ as String, response)
@@ -33,9 +33,9 @@ class KakaoErrorDecoderTest extends Specification {
         then:
         ApiException e = thrown()
         verifyAll {
-            e.errorMessage == "size is more than max"
-            e.httpStatus == HttpStatus.BAD_REQUEST
+            e.errorMessage == "error"
             e.errorType == ErrorType.EXTERNAL_API_ERROR
+            e.httpStatusCode == 400
         }
     }
 }

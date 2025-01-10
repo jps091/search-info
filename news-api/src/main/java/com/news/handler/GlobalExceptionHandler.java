@@ -1,8 +1,8 @@
 package com.news.handler;
 
 import com.news.error.ErrorResponse;
-import com.news.exception.ApiException;
-import com.news.exception.ErrorType;
+import com.search.exception.ApiException;
+import com.search.error.ErrorType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<ErrorResponse> handleApiException(ApiException e) {
         log.error("Api Exception occurred. message={}, className={}", e.getErrorMessage(), e.getClass().getName());
-        return ResponseEntity.status(e.getHttpStatus())
+        return ResponseEntity.status(e.getHttpStatusCode())
                 .body(new ErrorResponse(e.getErrorMessage(), e.getErrorType()));
     }
 
