@@ -1,4 +1,4 @@
-package com.search.websearch.service.result
+package com.search.websearch.infrastructure.result
 
 data class WebSearchResult(
         val title: String,

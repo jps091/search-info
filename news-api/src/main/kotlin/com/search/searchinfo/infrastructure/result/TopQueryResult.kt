@@ -1,4 +1,4 @@
-package com.search.searchinfo.service.result
+package com.search.searchinfo.infrastructure.result
 
 data class TopQueryResult(
         var query: String,

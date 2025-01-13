@@ -4,9 +4,9 @@ import com.news.search.service.event.SearchEvent
 import com.search.searchinfo.infrastructure.SearchInfoQueryRepository
 import com.search.websearch.controller.model.PageSearchResponse
 import com.search.websearch.controller.model.SearchResponse
-import com.search.websearch.service.result.WebSearchPageResult
-import com.search.websearch.service.result.WebSearchResult
-import com.search.searchinfo.service.result.TopQueryResult
+import com.search.websearch.infrastructure.result.WebSearchPageResult
+import com.search.websearch.infrastructure.result.WebSearchResult
+import com.search.searchinfo.infrastructure.result.TopQueryResult
 import com.search.websearch.controller.model.TopRankResponse
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationEventPublisher

@@ -1,8 +1,8 @@
 package com.search.websearch.service
 
 import com.search.websearch.service.port.WebRepository
-import com.search.websearch.service.result.WebSearchPageResult
-import com.search.websearch.service.result.WebSearchResult
+import com.search.websearch.infrastructure.result.WebSearchPageResult
+import com.search.websearch.infrastructure.result.WebSearchResult
 import io.github.resilience4j.circuitbreaker.CallNotPermittedException
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker
 import org.slf4j.LoggerFactory
@@ -17,19 +17,19 @@ class WebQueryService (
     private val log = LoggerFactory.getLogger(this::class.java)
 
     @CircuitBreaker(name = "naverSearch", fallbackMethod = "searchFallBack")
-    fun search(query: String, page: Int, size: Int) : WebSearchPageResult<WebSearchResult>{
+    fun search(query: String, page: Int, size: Int) : WebSearchPageResult<WebSearchResult> {
         log.info("[WebQueryService] naver query = {}, page = {}, size = {}", query, page, size)
         return naverWebRepository.search(query, page, size)
     }
 
-    fun searchFallBack(query: String, page: Int, size: Int, throwable: Throwable) : WebSearchPageResult<WebSearchResult>{
+    fun searchFallBack(query: String, page: Int, size: Int, throwable: Throwable) : WebSearchPageResult<WebSearchResult> {
         if (throwable is CallNotPermittedException){
             return handleOpenCircuit(query, page, size)
         }
         return handleException(query, page, size, throwable)
     }
 
-    private fun handleOpenCircuit(query: String, page: Int, size: Int): WebSearchPageResult<WebSearchResult>{
+    private fun handleOpenCircuit(query: String, page: Int, size: Int): WebSearchPageResult<WebSearchResult> {
         log.warn("[WebQueryService] Circuit Breaker is open! Fallback to kakao search.")
         return kakaoWebRepository.search(query, page, size)
     }

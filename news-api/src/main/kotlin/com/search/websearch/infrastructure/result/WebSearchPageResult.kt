@@ -1,4 +1,4 @@
-package com.search.websearch.service.result
+package com.search.websearch.infrastructure.result
 
 data class WebSearchPageResult<T>(val page: Int,
                                   val size: Int,
