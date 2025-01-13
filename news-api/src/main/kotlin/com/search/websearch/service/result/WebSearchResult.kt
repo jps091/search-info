@@ -1,6 +1,6 @@
-package com.search.websearch.service.response
+package com.search.websearch.service.result
 
-data class SearchQueryResponse(
+data class WebSearchResult(
         val title: String,
         val link: String,
         val description: String
