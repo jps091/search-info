@@ -1,6 +1,7 @@
 package com.search.feign
 
 import com.news.feign.KakaoClientConfiguration
+import com.search.model.KakaoWebResponse
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -12,5 +13,5 @@ interface KakaoClient {
             @RequestParam("query") query : String,
             @RequestParam("page") page : Int,
             @RequestParam("size") size : Int
-    )
+    ) : KakaoWebResponse
 }

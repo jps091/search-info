@@ -4,7 +4,7 @@ import com.news.search.controller.response.PageResult
 import com.news.search.controller.response.SearchResponse
 import spock.lang.Specification
 
-class PageResultTest extends Specification {
+class PageSearchResponseTest extends Specification {
     def "pageResult 객체 생성된다."(){
         given:
         def page = 1

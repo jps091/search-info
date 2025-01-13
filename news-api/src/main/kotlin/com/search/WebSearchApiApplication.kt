@@ -1,7 +1,9 @@
 package com.search
 
-import com.news.feign.KakaoClient
-import com.news.feign.NaverClient
+
+
+import com.search.feign.KakaoClient
+import com.search.feign.NaverClient
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.cloud.openfeign.EnableFeignClients
