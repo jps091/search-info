@@ -1,6 +1,5 @@
 package com.search.feign
 
-import com.news.feign.KakaoClientConfiguration
 import com.search.model.KakaoWebResponse
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping

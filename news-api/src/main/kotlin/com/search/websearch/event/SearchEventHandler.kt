@@ -1,6 +1,5 @@
 package com.search.websearch.event
 
-import com.news.search.service.response.SearchInfoQueryResponse
 import com.search.searchinfo.infrastructure.SearchInfoCommandRepository
 import com.search.searchinfo.infrastructure.SearchInfoQueryRepository
 import com.search.searchinfo.infrastructure.result.SearchInfoQueryResult

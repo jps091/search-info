@@ -1,6 +1,5 @@
 package com.news.controller.response
 
-import com.news.search.controller.response.SearchResponse
 import spock.lang.Specification
 
 class SearchResponseTest extends Specification {
