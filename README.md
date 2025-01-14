@@ -17,7 +17,7 @@ DEFAULT: dev
 - KT-1: external 모듈 마이그레이션
 - KT-2: common 모듈 마이그레이션
 - KT-3: main api 모듈 마이그레이션
-- 
+
 ---
 
 ### 🗂 프로젝트 구조
