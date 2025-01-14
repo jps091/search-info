@@ -1,7 +1,5 @@
 package com.search.websearch.infrastructure
 
-import com.news.search.service.response.PageQueryResult
-import com.news.search.service.response.SearchQueryResponse
 import com.search.feign.KakaoClient
 import com.search.model.Document
 import com.search.websearch.service.port.WebRepository
