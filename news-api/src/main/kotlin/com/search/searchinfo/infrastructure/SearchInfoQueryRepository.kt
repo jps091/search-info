@@ -1,7 +1,6 @@
 package com.search.searchinfo.infrastructure
 
 import com.search.searchinfo.infrastructure.result.SearchInfoQueryResult
-import com.search.websearch.infrastructure.result.WebSearchResult
 import com.search.searchinfo.infrastructure.result.TopQueryResult
 import org.slf4j.LoggerFactory
 import org.springframework.jdbc.core.JdbcTemplate
@@ -45,7 +44,7 @@ class SearchInfoQueryRepository(
         return RowMapper{ rs, _ ->
             TopQueryResult(
                     query = rs.getString("query"),
-                    searchCount = rs.getInt("search_count")
+                    count = rs.getInt("search_count")
             )
         }
     }

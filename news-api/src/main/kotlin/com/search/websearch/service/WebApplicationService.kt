@@ -1,13 +1,13 @@
 package com.search.websearch.service
 
-import com.news.search.service.event.SearchEvent
 import com.search.searchinfo.infrastructure.SearchInfoQueryRepository
-import com.search.websearch.controller.model.PageSearchResponse
-import com.search.websearch.controller.model.SearchResponse
+import com.search.websearch.controller.response.PageSearchResponse
+import com.search.websearch.controller.response.SearchResponse
 import com.search.websearch.infrastructure.result.WebSearchPageResult
 import com.search.websearch.infrastructure.result.WebSearchResult
 import com.search.searchinfo.infrastructure.result.TopQueryResult
-import com.search.websearch.controller.model.TopRankResponse
+import com.search.websearch.controller.response.TopRankResponse
+import com.search.websearch.event.EventRequest
 import org.slf4j.LoggerFactory
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
@@ -28,7 +28,7 @@ class WebApplicationService(
         val result = webQueryService.search(query, page, size)
         if(isNotEmptyResult(result)){
             log.info("검색결과 개수: {}", result.size);
-            eventPublisher.publishEvent(SearchEvent(query, LocalDateTime.now()))
+            eventPublisher.publishEvent(EventRequest(query, LocalDateTime.now()))
         }
         return convertToPageResponse(result)
     }
@@ -63,7 +63,7 @@ class WebApplicationService(
     private fun toTopRankResponse(result: TopQueryResult): TopRankResponse{
         return TopRankResponse(
                 query = result.query,
-                searchCount = result.searchCount
+                count = result.count
         )
     }
 }

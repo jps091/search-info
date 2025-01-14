@@ -1,4 +1,4 @@
-package com.search.websearch.controller.model
+package com.search.websearch.controller.response
 
 data class PageSearchResponse<T>(val page: Int,
                                  val size: Int,
