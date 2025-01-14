@@ -1,6 +1,6 @@
-#  📑 Web Search with Naver Open API - 웹 검색 서비스 README
+##  📑 Web Search with Naver Open API - 웹 검색 서비스(Kotlin)
 
-## 🚴 기능 요구사항
+### 🚴 기능 요구사항
 - 성능 최적화
   - 1년동안 100만건의 요청이 발생하는 서비스임을 고려해야 한다.
 - 웹 검색 기능
@@ -8,24 +8,19 @@
 - 웹 검색 키워드 통계 기능
   - 사용자들이 검색한 키워드의 횟수를 제공해야한다.
   - 사용자들이 검색한 키워드 순위 상위 15개를 제공해야한다.
+- Java에서 Kotlin으로 마이그레이션해야 한다.
  
 ---
 
-## 📝 브랜치 목록
+### 📝 브랜치 목록
 DEFAULT: dev
-- NS-1: README.md 작성 
-- NS-2: common, external 모듈 마이그레이션
-- NS-3: 멀티 모듈 구성
-- NS-4: 외부 api 연동
-- NS-5: api 서버 구현
-- NS-6: 검색 통계 기능 구현
-- NS-7: 고가용성을 위한 설계(Circuit-Breaker) 
-- NS-8: 고가용성을 위한 설계(@Async Thread Pool & Event Handle)
-- NS-9: 쿼리 최적화
-
+- KT-1: external 모듈 마이그레이션
+- KT-2: common 모듈 마이그레이션
+- KT-3: main api 모듈 마이그레이션
+- 
 ---
 
-## 🗂 프로젝트 구조
+### 🗂 프로젝트 구조
 - 멀티 모듈 구조 COMMON, NEWS-API, EXTERNAL(NAVER, KAKAO) 
 
 ```markdown
@@ -42,9 +37,9 @@ search
 
 ---
 
-## 🛠 기술 스택
+### 🛠 기술 스택
 
-- Backend: Java 17, Spring Boot 3.2.5, JDBC Template
+- Backend: Kotiln, Spring Boot 3.2.5, JDBC Template
 - Database: PostgreSQL 15.1
 - Build Tool: Gradle
 - Version Control: Git, GitHub
