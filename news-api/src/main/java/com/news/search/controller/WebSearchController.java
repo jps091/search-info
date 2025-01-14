@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @Slf4j
-@RequestMapping("/api/v1/webs")
+//@RequestMapping("/api/v1/webs")
 public class WebSearchController {
     private final WebApplicationService webApplicationService;
 
