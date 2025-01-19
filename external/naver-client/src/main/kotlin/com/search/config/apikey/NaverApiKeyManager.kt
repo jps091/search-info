@@ -24,7 +24,7 @@ class NaverApiKeyManager(
             val cacheKey = currentKey.clientId
             val currentCount = apiCallCache.getIfPresent(cacheKey) ?: 0
 
-            if (currentCount >= 2) {
+            if (currentCount >= 25000) {
                 // API 키 변경
                 currentKeyIndex = (currentKeyIndex + 1) % naverProperties.headers.size
                 log.info("API 키 변경됨: $currentKeyIndex (${currentKey.clientId})")
