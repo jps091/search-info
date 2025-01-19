@@ -1,5 +1,6 @@
 package com.search.feign
 
+import com.search.config.feign.NaverClientConfiguration
 import com.search.model.NaverWebResponse
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
