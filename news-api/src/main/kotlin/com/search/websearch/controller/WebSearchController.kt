@@ -5,6 +5,7 @@ import com.search.websearch.controller.response.PageSearchResponse
 import com.search.websearch.controller.response.SearchResponse
 import com.search.websearch.controller.response.TopRankResponse
 import com.search.websearch.service.WebApplicationService
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter
 import jakarta.validation.Valid
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.GetMapping
@@ -18,14 +19,16 @@ class WebSearchController(
 ) {
 
     private val log = LoggerFactory.getLogger(this::class.java)
-    @GetMapping
     @ResponseBody
+    @GetMapping
+    @RateLimiter(name = "apiRateLimiter")
     fun search(@Valid request: SearchRequest): PageSearchResponse<SearchResponse>{
         return webApplicationService.search(request.query, request.page, request.size)
     }
 
-    @GetMapping("/stats/ranking")
     @ResponseBody
+    @GetMapping("/stats/ranking")
+    @RateLimiter(name = "apiRateLimiter")
     fun findTopStats(): List<TopRankResponse>{
         log.info("webApplicationService.findTopQuery={}", webApplicationService.findTopQuery())
         return webApplicationService.findTopQuery()
