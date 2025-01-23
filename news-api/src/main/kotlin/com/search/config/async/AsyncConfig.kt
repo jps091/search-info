@@ -1,6 +1,5 @@
 package com.search.config.async
 
-import lombok.extern.slf4j.Slf4j
 import org.slf4j.LoggerFactory
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler
 import org.springframework.context.annotation.Bean
@@ -17,14 +16,14 @@ class AsyncConfig : AsyncConfigurer{
     private val log = LoggerFactory.getLogger(this::class.java)
     @Bean("event-Executor")
     override fun getAsyncExecutor(): Executor {
-        val coreCount = Runtime.getRuntime().availableProcessors()
+        //val coreCount = Runtime.getRuntime().availableProcessors()
         return ThreadPoolTaskExecutor().apply {
-            corePoolSize = coreCount
-            maxPoolSize = coreCount * 2
-            queueCapacity = 10
-            keepAliveSeconds = 60
+            corePoolSize = 2
+            maxPoolSize = 5
+            queueCapacity = 5
+            keepAliveSeconds = 30
             setWaitForTasksToCompleteOnShutdown(true)
-            setAwaitTerminationSeconds(60)
+            setAwaitTerminationSeconds(10)
             setThreadNamePrefix("event-")
             initialize()
         }
