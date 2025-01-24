@@ -19,6 +19,7 @@ DEFAULT: dev
 - KT-3: main api 모듈 마이그레이션
 - KT-4: Naver API KEY 관리 기능 추가
 - KT-5: Executro Thread Pool Custom & Load Test Script 추가
+- KT-6: 화면 UI 변경 및 기능 수정
   
 ---
 
