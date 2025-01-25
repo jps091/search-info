@@ -20,6 +20,7 @@ DEFAULT: dev
 - KT-4: Naver API KEY 관리 기능 추가
 - KT-5: Executro Thread Pool Custom & Load Test Script 추가
 - KT-6: 화면 UI 변경 및 기능 수정
+- KT-7: CICD 구축 workflow 작성
   
 ---
 

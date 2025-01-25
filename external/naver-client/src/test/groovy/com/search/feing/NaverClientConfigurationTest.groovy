@@ -1,6 +1,6 @@
 package com.search.feing
 
-import com.search.feign.NaverClientConfiguration
+import com.search.config.feign.NaverClientConfiguration
 import feign.RequestTemplate
 import spock.lang.Specification
 
