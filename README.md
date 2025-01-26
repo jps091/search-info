@@ -21,6 +21,7 @@ DEFAULT: dev
 - KT-5: Executro Thread Pool Custom & Load Test Script 추가
 - KT-6: 화면 UI 변경 및 기능 수정
 - KT-7: CICD 구축 workflow 작성
+- KT-8: LogBack 활용하여 슬랙에 알람보내기 XML 설정
   
 ---
 
