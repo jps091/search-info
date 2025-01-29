@@ -22,6 +22,7 @@ DEFAULT: dev
 - KT-6: 화면 UI 변경 및 기능 수정
 - KT-7: CICD 구축 workflow 작성
 - KT-8: LogBack 활용하여 슬랙에 알람보내기 XML 설정
+- KT-9: 정적 파일 삭제 with NGINX
   
 ---
 
