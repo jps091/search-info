@@ -1,7 +1,7 @@
 package com.news.controller
 
-import com.news.search.controller.WebSearchController
-import com.news.search.service.WebApplicationService
+import com.search.websearch.controller.WebSearchController
+import com.search.websearch.service.WebApplicationService
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
