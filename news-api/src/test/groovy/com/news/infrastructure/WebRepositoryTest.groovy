@@ -1,10 +1,10 @@
 package com.news.infrastructure
 
-import com.news.feign.NaverClient
-import com.news.model.Item
-import com.news.model.NaverWebResponse
-import com.news.search.infrastructure.NaverWebRepositoryImpl
-import com.news.search.service.port.WebRepository
+import com.search.feign.NaverClient
+import com.search.model.Item
+import com.search.model.NaverWebResponse
+import com.search.websearch.infrastructure.NaverWebRepositoryImpl
+import com.search.websearch.service.port.WebRepository
 import spock.lang.Specification
 
 class WebRepositoryTest extends Specification {
@@ -22,13 +22,13 @@ class WebRepositoryTest extends Specification {
                 new Item("뉴스1", "www.test1.com", "test1"),
                 new Item("뉴스2", "www.test2.com", "test2")
         ]
-        def response = NaverWebResponse.builder()
-                .lastBuildDate("Tue, 31 Dec 2024 15:31:00 +0900")
-                .total(10)
-                .start(1)
-                .display(10)
-                .items(items)
-                .build()
+        def response = NaverWebResponse(
+                lastBuildDate = "Tue, 31 Dec 2024 15:31:00 +0900",
+                total = 10,
+                start = 1,
+                display = 10,
+                items = items
+        )
 
         and:
         1 * naverClient.search("test", 1, 10) >> response
