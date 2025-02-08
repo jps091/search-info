@@ -23,7 +23,7 @@ DEFAULT: dev
 - KT-7: CICD 구축 workflow 작성
 - KT-8: LogBack 활용하여 슬랙에 알람보내기 XML 설정
 - KT-9: 정적 파일 삭제 with NGINX
-- KT-10: 의존성 추가 및 profile 기능 활성화
+- KT-10: 의존성 추가, profile 기능 활성화, 디렉토리 구조 변경
   
 ---
 

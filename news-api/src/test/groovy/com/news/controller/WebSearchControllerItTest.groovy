@@ -1,9 +1,9 @@
 package com.news.controller
 
-import com.search.websearch.controller.request.SearchRequest
-import com.search.websearch.controller.response.PageSearchResponse
-import com.search.websearch.controller.response.SearchResponse
-import com.search.websearch.service.WebQueryService
+import com.search.domain.websearch.controller.request.SearchRequest
+import com.search.domain.websearch.controller.response.PageSearchResponse
+import com.search.domain.websearch.controller.response.SearchResponse
+import com.search.domain.websearch.service.WebQueryService
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc

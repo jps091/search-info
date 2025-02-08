@@ -1,7 +1,7 @@
 package com.news.controller.response
 
-import com.search.websearch.controller.response.PageSearchResponse
-import com.search.websearch.controller.response.SearchResponse
+import com.search.domain.websearch.controller.response.PageSearchResponse
+import com.search.domain.websearch.controller.response.SearchResponse
 import spock.lang.Specification
 
 class PageSearchResponseTest extends Specification {
