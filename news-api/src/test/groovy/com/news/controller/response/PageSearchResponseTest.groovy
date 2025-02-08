@@ -1,7 +1,7 @@
 package com.news.controller.response
 
-import com.news.search.controller.response.PageResult
-import com.news.search.controller.response.SearchResponse
+import com.search.websearch.controller.response.PageSearchResponse
+import com.search.websearch.controller.response.SearchResponse
 import spock.lang.Specification
 
 class PageSearchResponseTest extends Specification {
@@ -14,7 +14,7 @@ class PageSearchResponseTest extends Specification {
         def searchResponse2 = GroovyMock(SearchResponse)
 
         when:
-        def result = new PageResult<>(page, size, totalElements, [searchResponse1, searchResponse2])
+        def result = new PageSearchResponse()<>(page, size, totalElements, [searchResponse1, searchResponse2])
 
         then:
         verifyAll {

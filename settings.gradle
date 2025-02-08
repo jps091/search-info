@@ -1,4 +1,4 @@
-rootProject.name = 'search'
+rootProject.name = 'search-KT'
 include 'news-api'
 include 'external'
 include 'common'
