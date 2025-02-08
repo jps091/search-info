@@ -29,6 +29,9 @@ dependencies {
     // validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
+    // websocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
     // log
     implementation("com.github.maricn:logback-slack-appender:1.6.1")
     implementation 'ch.qos.logback:logback-classic'
