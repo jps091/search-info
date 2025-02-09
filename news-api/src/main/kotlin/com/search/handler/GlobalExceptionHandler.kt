@@ -26,7 +26,7 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception::class)
     fun handleException(e: Exception): ResponseEntity<ErrorResponse>{
-        log.error("Exception occurred. message={}, className={}", e.message, e.javaClass.name)
+        log.error("Exception occurred. message={}, className={}", e.message, e.javaClass.name, e)
         return ResponseEntity.status(500)
                 .body(ErrorResponse(ErrorType.UNKNOWN.description, ErrorType.UNKNOWN))
     }
