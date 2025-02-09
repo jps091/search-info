@@ -24,6 +24,7 @@ DEFAULT: dev
 - KT-8: LogBack 활용하여 슬랙에 알람보내기 XML 설정
 - KT-9: 정적 파일 삭제 with NGINX
 - KT-10: 의존성 추가, profile 기능 활성화, 디렉토리 구조 변경
+- KT-11: 실시간 검색순위 업데이트를 기존 폴링 방식에서 SSE 도입
   
 ---
 
