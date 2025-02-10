@@ -26,7 +26,7 @@ class SearchEventHandler(
         log.info("[SearchEventHandler] handleEvent: {}", request)
         val inputQueryList = parseInputQueryList(request.query)
         val savedQueryList = queryRepository.findByQueryList(inputQueryList)
-        val oldTopList = queryRepository.findTopQuery(15)
+        val oldTopList = queryRepository.findTopQuery()
 
         if(savedQueryList.isEmpty()){
             val inputNewSearchInfoList = SearchInfo.createList(inputQueryList, request.timestamp)
@@ -39,7 +39,7 @@ class SearchEventHandler(
         commandRepository.saveAll(searchInfoList)
         commandRepository.increaseSearchCount(ids)
 
-        val newTopList = queryRepository.findTopQuery(15)
+        val newTopList = queryRepository.findTopQuery()
 
         if(isTopListChanged(oldTopList, newTopList)) {
             log.info("TopList 변경 감지, 전체 순위 업데이트 이벤트 전송")

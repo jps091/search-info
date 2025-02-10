@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Repository
-
+private const val LIMIT = 15
 @Repository
 class SearchInfoQueryRepository(
         private val jdbcTemplate: JdbcTemplate,
@@ -16,14 +16,14 @@ class SearchInfoQueryRepository(
 ) {
     private val log = LoggerFactory.getLogger(this::class.java)
 
-    fun findTopQuery(limit: Int) : List<TopQueryResult>{
+    fun findTopQuery() : List<TopQueryResult>{
         val sql = """
         SELECT query, search_count
         FROM search_info
         ORDER BY search_count DESC
         LIMIT ?
         """
-        return jdbcTemplate.query(sql, topQueryRowMapper(), limit)
+        return jdbcTemplate.query(sql, topQueryRowMapper(), LIMIT)
     }
 
     fun findByQueryList(queryList: List<String>): List<SearchInfoQueryResult>{
