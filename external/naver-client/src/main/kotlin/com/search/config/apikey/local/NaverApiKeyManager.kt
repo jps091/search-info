@@ -1,24 +1,28 @@
-package com.search.config.apikey
+package com.search.config.apikey.local
 
 import com.github.benmanes.caffeine.cache.Cache
+import com.search.config.apikey.NaverApiKeyManagerIfs
+import com.search.config.apikey.NaverProperties
 import org.slf4j.LoggerFactory
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
 @Component
+@Profile("local")
 class NaverApiKeyManager(
         private val apiCallCache: Cache<String, Int>,
         private val naverProperties: NaverProperties // 설정값 주입
-) {
+) : NaverApiKeyManagerIfs {
     private val log = LoggerFactory.getLogger(this::class.java)
 
     private var currentKeyIndex = 0
     private val lock = Any()
 
-    fun getCurrentApiKey(): NaverProperties.Header {
+    override fun getCurrentApiKey(): NaverProperties.Header {
         return naverProperties.headers[currentKeyIndex]
     }
 
-    fun recordApiCall() {
+    override fun recordApiCall() {
         synchronized(lock) {
             val currentKey = getCurrentApiKey()
             val cacheKey = currentKey.clientId
