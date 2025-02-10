@@ -1,4 +1,4 @@
-package com.search.config.caffeine
+package com.search.config.cache.caffeine
 
 import com.github.benmanes.caffeine.cache.Cache
 import com.github.benmanes.caffeine.cache.Caffeine
