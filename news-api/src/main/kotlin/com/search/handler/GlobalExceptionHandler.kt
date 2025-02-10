@@ -19,7 +19,7 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(ApiException::class)
     fun handleApiException(e: ApiException): ResponseEntity<ErrorResponse>{
-        log.error("Api Exception occurred. message={}, className={}", e.errorMessage, e.javaClass.name)
+        log.error("Api Exception occurred. message={}, className={}", e.errorMessage, e.javaClass.name, e)
         return ResponseEntity.status(e.httpStatusCode)
                 .body(ErrorResponse(e.errorMessage, e.errorType))
     }
@@ -33,28 +33,28 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(NoResourceFoundException::class)
     fun handleNoResourceFoundException(e: NoResourceFoundException): ResponseEntity<ErrorResponse>{
-        log.error("NoResourceFound Exception occurred. message={}, className={}", e.message, e.javaClass.name)
+        log.error("NoResourceFound Exception occurred. message={}, className={}", e.message, e.javaClass.name, e)
         return ResponseEntity.status(400)
                 .body(ErrorResponse(ErrorType.NO_RESOURCE.description, ErrorType.NO_RESOURCE))
     }
 
     @ExceptionHandler(MissingServletRequestParameterException::class)
     fun handleMissingServletRequestParameterException(e: MissingServletRequestParameterException): ResponseEntity<ErrorResponse>{
-        log.error("MissingServletRequestParameter Exception occurred. parameterName={}, message={}", e.parameterName, e.message)
+        log.error("MissingServletRequestParameter Exception occurred. parameterName={}, message={}", e.parameterName, e.message, e)
         return ResponseEntity.status(400)
                 .body(ErrorResponse(ErrorType.INVALID_PARAMETER.description, ErrorType.INVALID_PARAMETER))
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException::class)
     fun handleMethodArgumentTypeMismatchException(e: MethodArgumentTypeMismatchException): ResponseEntity<ErrorResponse>{
-        log.error("MethodArgumentTypeMismatch Exception occurred. message={}", e.message)
+        log.error("MethodArgumentTypeMismatch Exception occurred. message={}", e.message, e)
         return ResponseEntity.status(400)
                 .body(ErrorResponse(ErrorType.INVALID_PARAMETER.description, ErrorType.INVALID_PARAMETER))
     }
 
     @ExceptionHandler(BindException::class)
     fun handleBindException(e: BindException): ResponseEntity<ErrorResponse>{
-        log.error("Bind Exception occurred. message={}, className={}", e.message, e.javaClass.name)
+        log.error("Bind Exception occurred. message={}, className={}", e.message, e.javaClass.name, e)
         return ResponseEntity.status(400)
                 .body(ErrorResponse(createMessage(e), ErrorType.INVALID_PARAMETER))
     }

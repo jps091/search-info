@@ -13,7 +13,7 @@ import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
-private const val QUERY_SIZE = 15
+
 
 @Service
 class WebApplicationService(
@@ -34,7 +34,7 @@ class WebApplicationService(
     }
 
     fun findTopQuery(): List<TopRankResponse>{
-        val result = searchInfoQueryRepository.findTopQuery(QUERY_SIZE)
+        val result = searchInfoQueryRepository.findTopQuery()
         return result.map{ toTopRankResponse(it) }
     }
 
