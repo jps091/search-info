@@ -1,9 +1,8 @@
 package com.search.exception
-
-import com.search.error.ErrorType
+import com.search.error.ErrorTypeIfs
 
 data class ApiException(
         val errorMessage: String,
-        val errorType: ErrorType,
+        val errorType: ErrorTypeIfs,
         val httpStatusCode: Int
 ) : RuntimeException()
