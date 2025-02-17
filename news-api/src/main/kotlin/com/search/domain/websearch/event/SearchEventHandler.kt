@@ -1,5 +1,6 @@
 package com.search.domain.websearch.event
 
+import com.search.domain.chatroom.service.ChatRoomService
 import com.search.domain.searchinfo.infrastructure.SearchInfoCommandRepository
 import com.search.domain.searchinfo.infrastructure.SearchInfoQueryRepository
 import com.search.domain.searchinfo.infrastructure.result.SearchInfoQueryResult
@@ -16,13 +17,14 @@ import java.time.LocalDateTime
 class SearchEventHandler(
         private val sseConnectionPool: SseConnectionPool,
         private val queryRepository: SearchInfoQueryRepository,
-        private val commandRepository: SearchInfoCommandRepository
+        private val commandRepository: SearchInfoCommandRepository,
+        private val chatRoomService: ChatRoomService
 ) {
     private val log = LoggerFactory.getLogger(this::class.java)
 
     @Async
     @EventListener
-    fun handleEvent(request: EventRequest){
+    fun handleDatabaseEvent(request: EventRequest){
         log.info("[SearchEventHandler] handleEvent: {}", request)
         val inputQueryList = parseInputQueryList(request.query)
         val savedQueryList = queryRepository.findByQueryList(inputQueryList)
@@ -44,6 +46,7 @@ class SearchEventHandler(
         if(isTopListChanged(oldTopList, newTopList)) {
             log.info("TopList 변경 감지, 전체 순위 업데이트 이벤트 전송")
             sseConnectionPool.sendToAll("rankingUpdate", newTopList)
+            processNewChatRooms(oldTopList, newTopList)
             return
         }
     }
@@ -90,5 +93,13 @@ class SearchEventHandler(
             }
         }
         return false
+    }
+
+    private fun processNewChatRooms(oldTopList: List<TopQueryResult>, newTopList: List<TopQueryResult>) {
+        val oldKeywords = oldTopList.map { it.query }.toSet()
+        val newKeywords = newTopList.map { it.query }.filter { it !in oldKeywords }
+        newKeywords.forEach { keyword ->
+            chatRoomService.create(keyword)
+        }
     }
 }

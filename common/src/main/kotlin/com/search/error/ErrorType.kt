@@ -1,6 +1,6 @@
 package com.search.error
 
-enum class ErrorType(val description: String) {
+enum class ErrorType(override val description: String): ErrorTypeIfs {
     EXTERNAL_API_ERROR("Error calling external API."),
     UNKNOWN("Server error. Please try again later."),
     INVALID_PARAMETER("Invalid request."),
