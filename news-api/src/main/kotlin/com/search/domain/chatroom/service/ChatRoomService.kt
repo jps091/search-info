@@ -26,8 +26,10 @@ class ChatRoomService(
 
     fun create(roomKeyword: String){
         if(!chatRoomJpaRepository.existsByRoomKeyword(roomKeyword)){
+            log.info("[chat room create] = $roomKeyword")
             chatRoomJpaRepository.save(ChatRoomEntity(roomKeyword))
         }
+        log.info("[chat already exist] = $roomKeyword")
     }
 
     fun retrieveAll(): List<ChatRoomResponse> {

@@ -58,6 +58,7 @@ class StompEventHandler(
 
     private fun verifyRoomSize(roomKeyword: String) {
         val currentCount = chatRoomService.getParticipantCount(roomKeyword)
+        log.info("[$roomKeyword 채팅방 현재 참여자 수] = $currentCount")
         if (currentCount >= MAX_ROOM_SIZE) {
             log.warn("채팅방 $roomKeyword 인원 초과 - 현재 인원: $currentCount")
             throw ApiException("인원수 에러", StompErrorType.ROOM_PEOPLE_EXCEED, 403)
