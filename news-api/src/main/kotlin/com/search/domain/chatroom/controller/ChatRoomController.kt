@@ -1,7 +1,6 @@
 package com.search.domain.chatroom.controller
 
 import com.search.domain.chatroom.controller.response.ChatRoomResponse
-import com.search.domain.chatroom.controller.response.ChatRoomsResponse
 import com.search.domain.chatroom.controller.response.UserToken
 import com.search.domain.chatroom.service.ChatRoomService
 import com.search.domain.websearch.controller.request.SearchRequest

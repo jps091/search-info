@@ -24,12 +24,5 @@ class ChatRoomEntity(
 
         @field:NotNull
         @Column(name = "is_group_chat")
-        var isGroupChat: Boolean
-) {
-        constructor(roomKeyword: String) : this(
-                id = null,
-                registeredAt = null,
-                roomKeyword = roomKeyword,
-                isGroupChat = true
-        )
-}
+        var isGroupChat: Boolean = true
+)
