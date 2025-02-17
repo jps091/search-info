@@ -1,13 +1,11 @@
 package com.search.config.cache.redis
 
 import org.springframework.data.redis.core.RedisTemplate
-import org.springframework.data.redis.core.script.DefaultRedisScript
 import org.springframework.stereotype.Component
 import java.time.Duration
-import java.util.*
 
 @Component
-class RedisUtils(
+class RedisExternalUtils(
         private val redisTemplate: RedisTemplate<String, String>,
 ) {
     fun getValue(key: String): String = redisTemplate.opsForValue().get(key)!!
