@@ -2,14 +2,13 @@ package com.search.domain.chatroom.service
 
 import com.search.config.redis.RedisUtils
 import com.search.domain.chatroom.controller.response.ChatRoomResponse
-import com.search.domain.chatroom.controller.response.ChatRoomsResponse
 import com.search.domain.chatroom.infrastructure.ChatRoomEntity
 import com.search.domain.chatroom.infrastructure.ChatRoomJpaRepository
 import com.search.domain.searchinfo.infrastructure.SearchInfoQueryRepository
 import com.search.domain.stomp.event.MAX_ROOM_SIZE
 import org.slf4j.LoggerFactory
-import org.springframework.data.jpa.repository.query.JpaQueryCreator
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ChatRoomService(
@@ -24,16 +23,18 @@ class ChatRoomService(
         const val CHAT_ROOM_PREFIX = "CHAT_ROOM:"
     }
 
+    @Transactional
     fun create(roomKeyword: String){
         if(!chatRoomJpaRepository.existsByRoomKeyword(roomKeyword)){
             log.info("[chat room create] = $roomKeyword")
-            chatRoomJpaRepository.save(ChatRoomEntity(roomKeyword))
+            chatRoomJpaRepository.save(ChatRoomEntity(roomKeyword = roomKeyword))
         }
         log.info("[chat already exist] = $roomKeyword")
     }
-
+    @Transactional(readOnly = true)
     fun retrieveAll(): List<ChatRoomResponse> {
         val topQueryResults = searchInfoQueryRepository.findTopQuery()
+        log.info("retrieveAll -> topQueryResults $topQueryResults")
 
         return topQueryResults.mapNotNull { topQueryResult ->
             chatRoomJpaRepository.findByRoomKeyword(topQueryResult.query)?.let { chatRoomEntity ->
@@ -65,7 +66,7 @@ class ChatRoomService(
         return redisUtils.getSetSize(redisKey)
     }
 
-    fun getParticipants(roomKeyword: String): Set<String> {
+    private fun getParticipants(roomKeyword: String): Set<String> {
         val redisKey = createRedisKey(roomKeyword)
         return redisUtils.getMembers(redisKey)
     }

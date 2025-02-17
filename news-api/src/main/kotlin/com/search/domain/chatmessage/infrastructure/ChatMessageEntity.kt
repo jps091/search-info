@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 
 @Entity
 @Table(name = "chat_messages")
-class ChatMessage(
+class ChatMessageEntity(
         @field:Id
         @field:GeneratedValue(strategy = GenerationType.IDENTITY)
         @field:Column(name = "chat_message_id")
