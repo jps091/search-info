@@ -19,9 +19,8 @@ class ChatMessageEntity(
         var registeredAt: LocalDateTime? = null,
 
         @field:NotNull
-        @field:ManyToOne(fetch = FetchType.LAZY)
         @field:JoinColumn(name = "chat_room_id")
-        var chatRoomEntity: ChatRoomEntity,
+        var chatRoomId: Long,
 
         @field:NotNull
         @field:Column(length = 30, name = "user_token")
@@ -30,5 +29,4 @@ class ChatMessageEntity(
         @field:NotNull
         @field:Column(length = 100, name = "content")
         var content: String,
-) {
-}
+)

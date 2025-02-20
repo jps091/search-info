@@ -10,7 +10,8 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor
 import org.springframework.stereotype.Component
 import org.springframework.web.socket.messaging.SessionConnectEvent
 import org.springframework.web.socket.messaging.SessionDisconnectEvent
-const val MAX_ROOM_SIZE = 3
+
+
 @Component
 class StompEventHandler(
         private val chatRoomService: ChatRoomService,
@@ -19,64 +20,73 @@ class StompEventHandler(
 
     private val log = LoggerFactory.getLogger(this::class.java)
 
-    companion object {
-        // 세션별 채팅방 매핑에 사용될 키 접두사
-        const val SESSION_KEY_PREFIX = "SESSION:"
-    }
-
     @EventListener
     fun handleConnectionEvent(event: SessionConnectEvent){
         val accessor = StompHeaderAccessor.wrap(event.message)
-        val sessionId = getSessionIdFrom(accessor)
+        val (roomKeyword, userToken) = extractRoomKeywordAndUserToken(accessor)
 
-        val roomKeywordHeaders = accessor.getNativeHeader("roomKeyword")
-        if(roomKeywordHeaders.isNullOrEmpty()){
-            log.info("roomKeyword가 없는 세션: $sessionId")
-            throw ApiException("roomKeyword 에러", StompErrorType.ROOM_ID_NOT_EXIST, 500)
+        if (accessor.sessionAttributes == null) {
+            accessor.sessionAttributes = HashMap()
         }
+        accessor.sessionAttributes!!["roomKeyword"] = roomKeyword
+        accessor.sessionAttributes!!["userToken"] = userToken
 
-        val roomKeyword = roomKeywordHeaders.first()
-        verifyRoomSize(roomKeyword)
-        participateChatRoom(sessionId, roomKeyword)
+        participateChatRoom(roomKeyword, userToken)
     }
 
     @EventListener
     fun handleDisconnectionEvent(event: SessionDisconnectEvent){
         val accessor = StompHeaderAccessor.wrap(event.message)
-        val sessionId = getSessionIdFrom(accessor)
 
-        leaveChatRoom(sessionId)
-    }
+        val sessionAttributes = accessor.sessionAttributes
+        val roomKeyword = sessionAttributes?.get("roomKeyword") as? String
+        val userToken = sessionAttributes?.get("userToken") as? String
 
-    private fun getSessionIdFrom(accessor: StompHeaderAccessor): String {
-        val sessionId = accessor.sessionId ?: run {
-            log.warn("StompHeaderAccessor에 세션 ID가 없습니다.")
-            throw ApiException("세션 ID 에러", StompErrorType.SESSION_NOT_EXIST, 500)
+        if (roomKeyword == null || userToken == null) {
+            log.error("세션 속성에서 roomKeyword 또는 userToken을 찾을 수 없습니다.")
+            return
         }
-        return sessionId
+
+        log.info("[$roomKeyword 채팅방 나가기 이벤트 발생] 유저 토큰 = $userToken")
+        chatRoomService.leave(roomKeyword, userToken)
     }
 
-    private fun verifyRoomSize(roomKeyword: String) {
+    private fun extractRoomKeywordAndUserToken(accessor: StompHeaderAccessor): Pair<String, String> {
+        val roomKeywordHeaders = accessor.getNativeHeader("roomKeyword")
+        val userTokenHeaders = accessor.getNativeHeader("userToken")
+
+        if (roomKeywordHeaders.isNullOrEmpty() || userTokenHeaders.isNullOrEmpty()) {
+            throw ApiException("필수 헤더 누락", StompErrorType.HEADER_MISSING, 500)
+        }
+
+        val roomKeyword = roomKeywordHeaders.first()
+        val userToken = userTokenHeaders.first()
+        return Pair(roomKeyword, userToken)
+    }
+
+    private fun participateChatRoom(roomKeyword: String, userToken: String) {
+        verifyRoomSize(roomKeyword, userToken)
+        chatRoomService.join(roomKeyword, userToken)
+        log.info("채팅방 $roomKeyword 자동 입장 - 사용자 토큰: $userToken")
+    }
+
+    private fun verifyRoomSize(roomKeyword: String, userToken: String) {
+        if (isAlreadyParticipate(roomKeyword, userToken)) {
+            log.info("채팅방 $roomKeyword 에 이미 참여 중인 사용자 토큰: $userToken")
+            return
+        }
+
         val currentCount = chatRoomService.getParticipantCount(roomKeyword)
         log.info("[$roomKeyword 채팅방 현재 참여자 수] = $currentCount")
-        if (currentCount >= MAX_ROOM_SIZE) {
-            log.warn("채팅방 $roomKeyword 인원 초과 - 현재 인원: $currentCount")
+
+        if (currentCount >= ChatRoomService.MAX_ROOM_SIZE) {
+            log.error("채팅방 $roomKeyword 인원 초과 - 현재 인원: $currentCount")
             throw ApiException("인원수 에러", StompErrorType.ROOM_PEOPLE_EXCEED, 403)
         }
     }
 
-    private fun participateChatRoom(sessionId: String, roomKeyword: String) {
-        redisUtils.setValue(SESSION_KEY_PREFIX + sessionId, roomKeyword)
-        chatRoomService.join(roomKeyword, sessionId)
-        log.info("채팅방 $roomKeyword 자동 입장 - 세션 ID: $sessionId")
-    }
-
-    private fun leaveChatRoom(sessionId: String) {
-        val roomKeyword = redisUtils.getValue(SESSION_KEY_PREFIX + sessionId)
-        if (roomKeyword != null) {
-            chatRoomService.leave(roomKeyword, sessionId)
-            redisUtils.removeByKey(SESSION_KEY_PREFIX + sessionId)
-            log.info("자동 퇴장 - 채팅방 $roomKeyword, 세션 ID: $sessionId")
-        }
+    private fun isAlreadyParticipate(roomKeyword: String, userToken: String): Boolean{
+        val redisKey = RedisUtils.CHAT_PARTICIPANTS_PREFIX + roomKeyword
+        return redisUtils.getParticipantsFromHash(redisKey).contains(userToken)
     }
 }

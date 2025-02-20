@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Repository
-private const val LIMIT = 15
+private const val LIMIT = 10
 @Repository
 class SearchInfoQueryRepository(
         private val jdbcTemplate: JdbcTemplate,

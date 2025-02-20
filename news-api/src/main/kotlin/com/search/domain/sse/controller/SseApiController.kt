@@ -25,7 +25,7 @@ class SseApiController(
     @GetMapping(path = ["/connect"], produces = [MediaType.TEXT_EVENT_STREAM_VALUE])
     fun connect(): SseEmitter{
         val key = UUID.randomUUID().toString()
-        log.info ("SSE 연결 시작, uniqueKey: $key")
+        //log.info ("SSE 연결 시작, uniqueKey: $key")
 
         val connection = UserSseConnection.connect(
                 key,

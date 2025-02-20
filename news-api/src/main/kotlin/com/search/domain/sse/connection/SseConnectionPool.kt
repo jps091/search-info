@@ -8,7 +8,6 @@ import java.util.concurrent.ConcurrentHashMap
 @Component
 class SseConnectionPool: ConnectionPoolIfs<String, UserSseConnection> {
     private val connectionPool: MutableMap<String, UserSseConnection> = ConcurrentHashMap()
-    private val log = LoggerFactory.getLogger(this::class.java)
 
     override fun addSession(uniqueKey: String, session: UserSseConnection) {
         connectionPool[uniqueKey] = session
@@ -19,7 +18,7 @@ class SseConnectionPool: ConnectionPoolIfs<String, UserSseConnection> {
     }
 
     override fun onCompletionCallback(session: UserSseConnection) {
-        log.info("call back connection pool completion : {}", session)
+        //log.info("call back connection pool completion : {}", session)
         connectionPool.remove(session.uniqueKey)
     }
 

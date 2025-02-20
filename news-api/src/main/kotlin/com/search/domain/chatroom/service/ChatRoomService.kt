@@ -5,8 +5,8 @@ import com.search.domain.chatroom.controller.response.ChatRoomResponse
 import com.search.domain.chatroom.infrastructure.ChatRoomEntity
 import com.search.domain.chatroom.infrastructure.ChatRoomJpaRepository
 import com.search.domain.searchinfo.infrastructure.SearchInfoQueryRepository
-import com.search.domain.stomp.event.MAX_ROOM_SIZE
 import org.slf4j.LoggerFactory
+import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.Transactional
 class ChatRoomService(
         private val redisUtils: RedisUtils,
         private val chatRoomJpaRepository: ChatRoomJpaRepository,
-        private val searchInfoQueryRepository: SearchInfoQueryRepository
+        private val searchInfoQueryRepository: SearchInfoQueryRepository,
+        private val simpMessagingTemplate : SimpMessagingTemplate
 ) {
-    private val log = LoggerFactory.getLogger(this::class.java)
-
     companion object {
-        // 각 채팅방의 키 접두사
-        const val CHAT_ROOM_PREFIX = "CHAT_ROOM:"
+        const val MAX_ROOM_SIZE = 3
     }
+
+    private val log = LoggerFactory.getLogger(this::class.java)
 
     @Transactional
     fun create(roomKeyword: String){
@@ -47,32 +47,59 @@ class ChatRoomService(
         }
     }
 
-    fun join(roomKeyword: String, sessionId: String){
+    fun join(roomKeyword: String, userToken: String){
         val redisKey = createRedisKey(roomKeyword)
-        redisUtils.setValue(redisKey, sessionId)
-        val count = redisUtils.getSetSize(redisKey)
-        log.info("참여자 추가 - 채팅방: $roomKeyword, 세션: $sessionId, 현재 인원: $count")
+        val count = redisUtils.incrementHash(redisKey, userToken)
+        log.info("참여자 추가 - 채팅방: $roomKeyword, 유저 토큰: $userToken, 현재 인원: $count")
     }
 
-    fun leave(roomKeyword: String, sessionId: String){
+    fun leave(roomKeyword: String, userToken: String){
         val redisKey = createRedisKey(roomKeyword)
-        redisUtils.removeBySet(redisKey, sessionId)
-        val count = redisUtils.getSetSize(redisKey)
-        log.info("참여자 제거 - 채팅방: $roomKeyword, 세션: $sessionId, 남은 인원: $count")
+        val count = redisUtils.decrementHash(redisKey, userToken)
+        if (count <= 0) {
+            redisUtils.removeHashField(redisKey, userToken)
+        }
+        log.info("참여자 제거 - 채팅방: $roomKeyword, 유저 토큰: $userToken, 남은 인원: $count")
+        val updatedParticipants = redisUtils.getParticipantsFromHash(redisKey)
+        simpMessagingTemplate.convertAndSend("/ws/topic/$roomKeyword/participants", updatedParticipants)
     }
 
-    fun getParticipantCount(roomKeyword: String): Long{
+    // 고유 사용자 수는 Hash의 필드 개수로 계산
+    fun getParticipantCount(roomKeyword: String): Long {
+        val redisKey = createRedisKey(roomKeyword)
+        return redisUtils.getParticipantsFromHash(redisKey).size.toLong()
+    }
+
+    fun getParticipants(roomKeyword: String): Set<String> {
+        val redisKey = createRedisKey(roomKeyword)
+        return redisUtils.getParticipantsFromHash(redisKey)
+    }
+
+    private fun createRedisKey(roomKeyword: String): String {
+        return RedisUtils.CHAT_PARTICIPANTS_PREFIX + roomKeyword
+    }
+
+    fun join2(roomKeyword: String, userToken: String){
+        val redisKey = createRedisKey(roomKeyword)
+        redisUtils.saveWithSet(redisKey, userToken)
+        val count = redisUtils.getSetSize(redisKey)
+        log.info("참여자 추가 - 채팅방: $roomKeyword, 유저 토큰: $userToken, 현재 인원: $count")
+    }
+
+    fun leave2(roomKeyword: String, userToken: String){
+        val redisKey = createRedisKey(roomKeyword)
+        redisUtils.removeBySet(redisKey, userToken)
+        val count = redisUtils.getSetSize(redisKey)
+        log.info("참여자 제거 - 채팅방: $roomKeyword, 유저 토큰: $userToken, 남은 인원: $count")
+    }
+
+    fun getParticipantCount2(roomKeyword: String): Long{
         val redisKey = createRedisKey(roomKeyword)
         return redisUtils.getSetSize(redisKey)
     }
 
-    private fun getParticipants(roomKeyword: String): Set<String> {
+    private fun getParticipants2(roomKeyword: String): Set<String> {
         val redisKey = createRedisKey(roomKeyword)
         return redisUtils.getMembers(redisKey)
-    }
-
-    private fun createRedisKey(roomKeyword: String): String {
-        val redisKey = CHAT_ROOM_PREFIX + roomKeyword
-        return redisKey
     }
 }

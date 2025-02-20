@@ -3,8 +3,6 @@ package com.search.domain.chatroom.controller
 import com.search.domain.chatroom.controller.response.ChatRoomResponse
 import com.search.domain.chatroom.controller.response.UserToken
 import com.search.domain.chatroom.service.ChatRoomService
-import com.search.domain.websearch.controller.request.SearchRequest
-import jakarta.validation.Valid
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -36,8 +34,8 @@ class ChatRoomController(
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/token")
-    fun issueToken(@Valid request: SearchRequest): UserToken{
-        val token = UUID.randomUUID().toString()
+    fun issueToken(): UserToken{
+        val token = UUID.randomUUID().toString().substring(0, 4)
         log.info("user token = $token")
         return UserToken(token)
     }
@@ -58,16 +56,7 @@ class ChatRoomController(
     @ResponseBody
     @DeleteMapping("/{roomKeyword}")
     fun leave(@PathVariable roomKeyword: String,
-              @RequestHeader("X-Session-Id") sessionId: String){
-        chatRoomService.leave(roomKeyword, sessionId)
+              @RequestHeader("X-Session-Id") userToken: String){
+        chatRoomService.leave(roomKeyword, userToken)
     }
 }
-
-/**
- *     @ResponseBody
- *     @PostMapping("/{roomKeyword}/read")
- *     fun read(@PathVariable roomKeyword: String,
- *              @RequestHeader("X-Session-Id") sessionId: String){
- *        chatRoomService.read(roomKeyword)
- *     }
- */

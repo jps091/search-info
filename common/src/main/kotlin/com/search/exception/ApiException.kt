@@ -5,4 +5,4 @@ data class ApiException(
         val errorMessage: String,
         val errorType: ErrorTypeIfs,
         val httpStatusCode: Int
-) : RuntimeException()
+) : RuntimeException(errorType.description)
