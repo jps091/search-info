@@ -38,11 +38,11 @@ class RedisUtils(
 
     fun getSetSize(key: String): Long = redisTemplate.opsForSet().size(key) ?: 0
 
-    fun getMembers(key: String): Set<String> = redisTemplate.opsForSet().members(key) ?: emptySet()
-
-    fun removeBySet(key: String, value: String) =  redisTemplate.opsForSet().remove(key, value)
-
     /***
+     *  기존 단일 세션 관리 메서드
+     *  fun getMembers(key: String): Set<String> = redisTemplate.opsForSet().members(key) ?: emptySet()
+     *  fun removeBySet(key: String, value: String) =  redisTemplate.opsForSet().remove(key, value)
+     *
      *  다중 세션 관리를 위한 메서드
      */
     // 사용자 토큰의 세션 카운트를 증가 (없으면 생성)
