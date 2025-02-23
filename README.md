@@ -1,14 +1,17 @@
-##  📑 Web Search with Naver Open API - 웹 검색 서비스(Kotlin)
+##  📑 Search-Info with OpenAPI, Stomp - 웹 검색, 채팅 제공 서비스(Kotlin)
 
 ### 🚴 기능 요구사항
 - 성능 최적화
-  - 1년동안 1,000만건의 요청이 발생하는 서비스임을 고려해야 한다.
+  - 1년동안 10,000만건의 요청이 발생하는 서비스임을 고려해야 한다.
 - 웹 검색 기능
   - 키워드로 검색을 시도하면 해당 키워드 관련 자료를 제공해야 한다.
 - 웹 검색 키워드 통계 기능
   - 사용자들이 검색한 키워드의 횟수를 제공해야한다.
-  - 사용자들이 검색한 키워드 순위 월간 상위 15개를 제공해야한다.
-- Java에서 Kotlin으로 마이그레이션해야 한다.
+  - 사용자들이 검색한 키워드 순위 월간 상위 10개를 제공해야한다.
+- 단체 채팅방
+  - 익명성 채팅방이지만, 사용자를 식별해야한다.
+  - 채팅방 인원 관리를 해야한다.
+  - 채팅 접속시 현재 참여 인원 목록을 제공해야한다.
  
 ---
 
@@ -43,16 +46,16 @@ search
 ```
 ---
 
-<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/f80af4a1-cb8c-497b-bde0-d6b2785cdd7e" />
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/d5c45f8e-8700-447a-969b-086e1c9d37c8" />
 
 ---
 
 ### 🛠 기술 스택
 
-- Backend: Kotiln, Spring Boot 3.2.5, JDBC Template
-- Database: PostgreSQL 15.1
+- Backend: Kotiln, Spring Boot 3.2.5, JDBC Template, JPA
+- Database: PostgreSQL 15.1, Redis
 - Build Tool: Gradle
 - Version Control: Git, GitHub
 - Infra: EC2, Nginx, SupaBase
 - Containerization: Docker
-- CI/CD: Github Actions, ECR, CodeDeploy
+- CI/CD: Github Actions, ECR, CodeDeploy, S3
