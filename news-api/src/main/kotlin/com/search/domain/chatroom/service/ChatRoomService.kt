@@ -18,7 +18,7 @@ class ChatRoomService(
         private val simpMessagingTemplate : SimpMessagingTemplate
 ) {
     companion object {
-        const val MAX_ROOM_SIZE = 3
+        const val MAX_ROOM_SIZE = 5
     }
 
     private val log = LoggerFactory.getLogger(this::class.java)
@@ -77,29 +77,5 @@ class ChatRoomService(
 
     private fun createRedisKey(roomKeyword: String): String {
         return RedisUtils.CHAT_PARTICIPANTS_PREFIX + roomKeyword
-    }
-
-    fun join2(roomKeyword: String, userToken: String){
-        val redisKey = createRedisKey(roomKeyword)
-        redisUtils.saveWithSet(redisKey, userToken)
-        val count = redisUtils.getSetSize(redisKey)
-        log.info("참여자 추가 - 채팅방: $roomKeyword, 유저 토큰: $userToken, 현재 인원: $count")
-    }
-
-    fun leave2(roomKeyword: String, userToken: String){
-        val redisKey = createRedisKey(roomKeyword)
-        redisUtils.removeBySet(redisKey, userToken)
-        val count = redisUtils.getSetSize(redisKey)
-        log.info("참여자 제거 - 채팅방: $roomKeyword, 유저 토큰: $userToken, 남은 인원: $count")
-    }
-
-    fun getParticipantCount2(roomKeyword: String): Long{
-        val redisKey = createRedisKey(roomKeyword)
-        return redisUtils.getSetSize(redisKey)
-    }
-
-    private fun getParticipants2(roomKeyword: String): Set<String> {
-        val redisKey = createRedisKey(roomKeyword)
-        return redisUtils.getMembers(redisKey)
     }
 }
