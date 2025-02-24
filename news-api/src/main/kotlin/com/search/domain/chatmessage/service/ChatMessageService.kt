@@ -30,7 +30,7 @@ class ChatMessageService(
 
         val messageId = UUID.randomUUID().toString().substring(0, 4)
         log.info("Saved message in Redis: value=$value, messageId=$messageId")
-        return ChatMessageResponse(body.message, body.userToken, messageId)
+        return ChatMessageResponse(body.message, body.userToken, messageId, roomKeyword)
     }
 
     fun markMessageAsRead(roomKeyword: String, messageId: String, userToken: String): Long{
