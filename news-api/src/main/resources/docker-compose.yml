@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+  server:
+    image: search-info
+    container_name: search-info
+    ports:
+      - "8083:8083"
