@@ -2,15 +2,16 @@ package com.search.config.apikey.global
 
 import com.search.config.apikey.NaverApiKeyManagerIfs
 import com.search.config.apikey.NaverProperties
-import com.search.config.cache.redis.RedisExternalUtils
+import org.redisson.api.RedissonClient
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
+import java.util.concurrent.TimeUnit
 
 @Component
 @Profile("global")
 class NaverApiKeyRedisManager(
-        private val redisExternalUtils: RedisExternalUtils,
+        private val redissonClient: RedissonClient,
         private val naverProperties: NaverProperties // 설정값 주입
 ) : NaverApiKeyManagerIfs {
     private val log = LoggerFactory.getLogger(this::class.java)
@@ -26,13 +27,18 @@ class NaverApiKeyRedisManager(
         val cacheKey = currentKey.clientId
         val lockKey = "lock:$cacheKey"
 
-        while (!redisExternalUtils.lock(lockKey)) {
-            Thread.sleep(100)
-        }
+        val lock = redissonClient.getLock(lockKey)
 
         try {
-            // 락을 획득한 상태에서 API 호출 횟수를 읽어옴
-            val currentCount = redisExternalUtils.getValue(cacheKey).toInt()
+            val available = lock.tryLock(3, 2, TimeUnit.SECONDS)
+            if(!available){
+                log.info("$lockKey 락 획득 실패")
+                return
+            }
+
+            // RAtomicLong을 사용하여 API 호출 횟수를 원자적으로 관리
+            val counter = redissonClient.getAtomicLong(cacheKey)
+            val currentCount = counter.get()
 
             if (currentCount >= 25000) {
                 // API 키 변경
@@ -40,12 +46,14 @@ class NaverApiKeyRedisManager(
                 log.info("API 키 변경됨: $currentKeyIndex (${currentKey.clientId})")
             } else {
                 // 호출 횟수 증가
-                redisExternalUtils.increase(cacheKey)
-                log.info("API 호출 횟수 증가: $currentCount -> ${currentCount + 1}")
+                val newCount = counter.incrementAndGet()
+                log.info("API 호출 횟수 증가: $currentCount -> $newCount")
             }
         } finally {
             // 반드시 락 해제
-            redisExternalUtils.unlock(lockKey)
+            if (lock.isHeldByCurrentThread) {
+                lock.unlock()
+            }
         }
     }
 }
