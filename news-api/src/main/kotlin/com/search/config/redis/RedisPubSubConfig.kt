@@ -16,8 +16,8 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter
 import org.springframework.data.redis.serializer.StringRedisSerializer
 
-@Configuration
-@Profile("global")
+//@Configuration
+//@Profile("global")
 class RedisPubSubConfig(
         @Value("\${spring.data.redis.host}") private val host: String,
         @Value("\${spring.data.redis.port}") private val port: Int
