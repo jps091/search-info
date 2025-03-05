@@ -30,8 +30,8 @@ class StompController(
         return chatMessageService.saveInRedis(roomKeyword, body)
     }
 
-    @MessageMapping("/{roomKeyword}/participants") // 클라이언트에서 특정 publish/roomKeyword 형태로 메시지를 발행시 MessageMapping 에서 수신
-    @SendTo("/ws/topic/{roomKeyword}/participants") // 해당 roomKeyword에 메시지를 발행하여 구독중인 클라이언트에게 메시지 전송
+    @MessageMapping("/{roomKeyword}/participants")
+    @SendTo("/ws/topic/{roomKeyword}/participants")
     fun getParticipants(@DestinationVariable roomKeyword: String): Set<String>
     {
         val participants = chatRoomService.getParticipants(roomKeyword)
