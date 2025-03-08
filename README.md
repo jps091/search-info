@@ -15,6 +15,26 @@
  
 ---
 
+### 🚀 기능 구현 화면
+
+
+- **home**
+<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/6dbcac11-f442-4678-bdbf-8dd0691dba7e" />
+
+
+- **검색 결과**
+<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/84d8e2b0-f63f-483e-8246-d452576a64de" />
+
+- **채팅방 목록**
+<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/01f9466a-fe1d-4c1f-8a15-3d96aaf04d46" />
+
+
+- **채팅방 상세**
+<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/28eb3cbc-78c7-4d51-91a0-b1be812cf693" />
+
+
+---
+
 ### 📝 브랜치 목록
 DEFAULT: dev
 - KT-1: external 모듈 마이그레이션
