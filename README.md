@@ -1,4 +1,4 @@
-##  📑 Search-Info with OpenAPI, Stomp - 웹 검색, 채팅 제공 서비스(Kotlin)
+##  📑 Search-Info - 웹 검색, 채팅 제공 서비스(Kotlin)
 
 ### 📁 프로젝트 개요
 
@@ -27,12 +27,13 @@ Open API를 활용하여, 검색 서비스를 제공 및 인기 키워드를 주
 ---
 
 ### 👥 기여도
-프론트엔드(vue.js) 개발부터 백엔드, 배포까지 모든 과정을 혼자서 스스로 하였습니다.
-
-- [vue.js Github](https://github.com/jps091/search-info-client)
+프론트엔드(vue.js) 개발부터 백엔드, 배포 100% 기여
 
 - [서비스 배포 링크](https://search-info.n-e.kr/#/)
 
+- [프로젝트 관련 포스팅](https://github.com/jps091/search-info/wiki)
+
+- [vue.js Github](https://github.com/jps091/search-info-client)
 ---
 
 ### 🗂 프로젝트 구조
@@ -69,20 +70,26 @@ search
 
 ### 🚀 기능 구현 화면
 
+  **홈 화면**
 
-- **home**
-<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/6dbcac11-f442-4678-bdbf-8dd0691dba7e" />
-
-
-- **검색 결과**
-<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/84d8e2b0-f63f-483e-8246-d452576a64de" />
-
-- **채팅방 목록**
-<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/01f9466a-fe1d-4c1f-8a15-3d96aaf04d46" />
+<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/6dbcac11-f442-4678-bdbf-8dd0691dba7e" /></br></br>
 
 
-- **채팅방 상세**
-<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/28eb3cbc-78c7-4d51-91a0-b1be812cf693" />
+
+  **검색 결과 화면**
+
+<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/84d8e2b0-f63f-483e-8246-d452576a64de" /></br></br>
+
+
+
+  **채팅방 목록 화면**
+
+<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/01f9466a-fe1d-4c1f-8a15-3d96aaf04d46" /></br></br>
+
+
+  **채팅방 상세 화면**
+
+<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/28eb3cbc-78c7-4d51-91a0-b1be812cf693" /></br></br>
 
 
 ---
