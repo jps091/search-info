@@ -1,16 +1,16 @@
 ##  📑 Search-Info - 웹 검색, 채팅 제공 서비스
 
 ### 📖 목 차
-1. [프로젝트 개요](https://github.com/jps091/search-info/edit/dev/README.md#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94)
-2. [가상의 시나리오](https://github.com/jps091/search-info/edit/dev/README.md#%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4-%EA%B5%AC%EC%B2%B4%ED%99%94)
-3. [프로젝트 기여도](https://github.com/jps091/search-info/edit/dev/README.md#-%EA%B8%B0%EC%97%AC%EB%8F%84)
-4. [요구사항](https://github.com/jps091/search-info/edit/dev/README.md#-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)
-5. [프로젝트 구조](https://github.com/jps091/search-info/edit/dev/README.md#-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0)
-6. [시스템 아키텍쳐](https://github.com/jps091/search-info/edit/dev/README.md#-aws-%EA%B8%B0%EB%B0%98-%EB%B0%B0%ED%8F%AC)
-7. [브랜치 목록](https://github.com/jps091/search-info/edit/dev/README.md#-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%AA%A9%EB%A1%9D)
-8. [기능 구현 화면](https://github.com/jps091/search-info/edit/dev/README.md#-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%ED%99%94%EB%A9%B4)
-9. [프로젝트 회고](https://github.com/jps091/search-info/edit/dev/README.md#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0)
-10. [기술 스택](https://github.com/jps091/search-info/edit/dev/README.md#-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
+1. [프로젝트 개요]([https://github.com/jps091/search-info/edit/dev/README.md#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94](https://github.com/jps091/search-info?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94))
+2. [가상의 시나리오]([https://github.com/jps091/search-info/edit/dev/README.md#%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4-%EA%B5%AC%EC%B2%B4%ED%99%94](https://github.com/jps091/search-info?tab=readme-ov-file#%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4-%EA%B5%AC%EC%B2%B4%ED%99%94))
+3. [프로젝트 기여도]([https://github.com/jps091/search-info/edit/dev/README.md#-%EA%B8%B0%EC%97%AC%EB%8F%84](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%97%AC%EB%8F%84))
+4. [요구사항]([https://github.com/jps091/search-info/edit/dev/README.md#-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD](https://github.com/jps091/search-info?tab=readme-ov-file#-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD))
+5. [프로젝트 구조]([https://github.com/jps091/search-info/edit/dev/README.md#-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0](https://github.com/jps091/search-info?tab=readme-ov-file#-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0))
+6. [시스템 아키텍쳐]([https://github.com/jps091/search-info/edit/dev/README.md#-aws-%EA%B8%B0%EB%B0%98-%EB%B0%B0%ED%8F%AC](https://github.com/jps091/search-info?tab=readme-ov-file#-aws-%EA%B8%B0%EB%B0%98-%EB%B0%B0%ED%8F%AC))
+7. [브랜치 목록]([https://github.com/jps091/search-info/edit/dev/README.md#-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%AA%A9%EB%A1%9D](https://github.com/jps091/search-info?tab=readme-ov-file#-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%AA%A9%EB%A1%9D))
+8. [기능 구현 화면]([https://github.com/jps091/search-info/edit/dev/README.md#-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%ED%99%94%EB%A9%B4](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%ED%99%94%EB%A9%B4))
+9. [프로젝트 회고]([https://github.com/jps091/search-info/edit/dev/README.md#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0](https://github.com/jps091/search-info?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0))
+10. [기술 스택]([https://github.com/jps091/search-info/edit/dev/README.md#-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D))
 
 ---
 
@@ -149,7 +149,7 @@ DEFAULT: dev
 
 ### 🛠 기술 스택
 
-- Backend: Kotiln, Spring Boot 3.2.5, JDBC Template, JPA
+- Backend: Kotiln, Spring Boot 3.2.5, JDBC Template, JPA, Stomp
 - Database: PostgreSQL 15.1, Redis
 - Build Tool: Gradle
 - Version Control: Git, GitHub
