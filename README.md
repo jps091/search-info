@@ -2,15 +2,16 @@
 
 ### 📖 목 차
 1. [프로젝트 개요](https://github.com/jps091/search-info?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94)
-2. [요구사항 시나리오 TPS 분석](https://github.com/jps091/search-info?tab=readme-ov-file#%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4-%EA%B5%AC%EC%B2%B4%ED%99%94)
-3. [프로젝트 기여도](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%97%AC%EB%8F%84)
+2. [프로젝트 기여도](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%97%AC%EB%8F%84)
+3. [요구사항 시나리오 TPS 분석](https://github.com/jps091/search-info?tab=readme-ov-file#%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4-%EA%B5%AC%EC%B2%B4%ED%99%94)
 4. [요구사항](https://github.com/jps091/search-info?tab=readme-ov-file#-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)
 5. [프로젝트 구조](https://github.com/jps091/search-info?tab=readme-ov-file#-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0)
-6. [시스템 아키텍쳐](https://github.com/jps091/search-info?tab=readme-ov-file#-aws-%EA%B8%B0%EB%B0%98-%EB%B0%B0%ED%8F%AC)
+6. [ERD 설계](https://github.com/jps091/search-info#-erd)
 7. [브랜치 목록](https://github.com/jps091/search-info?tab=readme-ov-file#-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%AA%A9%EB%A1%9D)
-8. [기능 구현 화면](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%ED%99%94%EB%A9%B4)
-9. [프로젝트 회고](https://github.com/jps091/search-info?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0)
-10. [기술 스택](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
+8. [기술 스택](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
+9. [시스템 아키텍쳐](https://github.com/jps091/search-info?tab=readme-ov-file#-aws-%EA%B8%B0%EB%B0%98-%EB%B0%B0%ED%8F%AC)
+10. [기능 구현 화면](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%ED%99%94%EB%A9%B4)
+11. [프로젝트 회고](https://github.com/jps091/search-info?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0)
 
 ---
 
