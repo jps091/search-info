@@ -74,7 +74,7 @@
 ---
 
 ### 🗂 프로젝트 구조
-- 멀티 모듈 구조 COMMON, NEWS-API, EXTERNAL(NAVER, KAKAO) 
+**1. 멀티 모듈 구조 COMMON, NEWS-API, EXTERNAL(NAVER, KAKAO)**
 
 ```markdown
 search
@@ -84,6 +84,13 @@ search
 │   └── kakao-api # 카카오 API 서버 모듈
 └── news-api # 검색 서비스 모듈
 ```
+
+**2. 관련 모듈 의존성 파일**
+- common Gradle 파일은 최상위 Gradle 설정을 그대로 가져가기 때문에 존재하지 않음
+
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/040189f8-6843-4727-b96e-d91d41868fe3" />
+
+
 ---
 
 ### 💼 ERD
@@ -120,6 +127,7 @@ DEFAULT: dev
 ### 🛠 기술 스택
 
 - Backend: Kotiln, Spring Boot 3.2.5, JDBC Template, JPA, Stomp
+- Test: JUnit5, Spock
 - Database: PostgreSQL 15.1, Redis
 - Build Tool: Gradle
 - Version Control: Git, GitHub
@@ -137,26 +145,9 @@ DEFAULT: dev
 
 ### 🚀 기능 구현 화면
 
-  **홈 화면**
+<img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/717808c6-0802-47c8-8600-121f81af1393" /></br>
 
-<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/6dbcac11-f442-4678-bdbf-8dd0691dba7e" /></br></br>
-
-
-
-  **검색 결과 화면**
-
-<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/84d8e2b0-f63f-483e-8246-d452576a64de" /></br></br>
-
-
-
-  **채팅방 목록 화면**
-
-<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/01f9466a-fe1d-4c1f-8a15-3d96aaf04d46" /></br></br>
-
-
-  **채팅방 상세 화면**
-
-<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/28eb3cbc-78c7-4d51-91a0-b1be812cf693" /></br></br>
+<img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/f6c9b80c-2ae0-457c-bd9f-5be46df838de" />
 
 ---
 
