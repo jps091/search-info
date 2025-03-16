@@ -14,15 +14,26 @@
 
 ---
 
-### 📁 프로젝트 개요
+### 📁 프로젝트 진행 배경
 
-Open API를 활용하여, 검색 서비스를 제공 및 인기 키워드를 주제로 단체 채팅 서비를 제공해 주는 플랫폼입니다. 
+이번 프로젝트에서는 시나리오 기반 설계의 현실적인 한계를 경험하고, 불필요한 오버엔지니어링을 경계하며 실질적인 성능 최적화를 적용하는 것을 목표로 삼았습니다.
 
-연간 1,000만 건의 요청이 발생하는 가상의 시나리오를 세우고, 이를 구체화한 정보를 토대로 쿼리 최적화, 인덱스, 테이블 파티셔닝을 통해 요구사항에 맞는 최적화 과정을 진행하였습니다. 
+단순히 새로운 기술을 도입하는 것이 아니라, 1,000만 건의 요청을 처리해야 한다는 가상의 시나리오를 구체화하여 데이터 기반의 최적화 전략을 검증하고자 했습니다. 
 
-이전 프로젝트에서 RDS $20의 과금이 발생하였는데, SupaBase 같은 경우는 저장 공간 500MB까지 무료이기 때문에 해당 데이터베이스 서버를 선택하였습니다. 
+또한, Open API 연동 과정에서 API 호출 비용을 고려한 설계 및 장애 대응 방안을 고민하며, 실무에서 발생할 수 있는 문제를 미리 대비하는 것을 중요하게 생각했습니다. 
 
-또한 Nginx를 활용해 SSL/TLS 적용, 로드밸런서 역할 및 정적 파일을 클라이언트에 제공하여 WAS가 API 요청만 처리하도록 설계하였습니다.
+더불어, 채팅 기능을 통해 웹소켓을 적용하고, HTTP·SSE 통신과의 차이점을 학습하며, 각각의 상황에 맞는 최적의 통신 프로토콜을 선택하는 경험을 쌓는 것을 목표로 하였습니다.
+
+---
+
+### 👥 기여도
+프론트엔드(vue.js) 개발부터 백엔드, 배포 100% 기여
+
+- [서비스 배포 링크](https://search-info.n-e.kr/#/)
+
+- [프로젝트 관련 포스팅](https://github.com/jps091/search-info/wiki)
+
+- [vue.js Github](https://github.com/jps091/search-info-client)
 
 ---
 
@@ -37,17 +48,6 @@ Open API를 활용하여, 검색 서비스를 제공 및 인기 키워드를 주
 **요구 TPS**(24시간 중 8시간 요청 발생) → 27,400건 / 28,800(8시간 초) = **2TPS(피크 타임 고려)**
 
 </aside>
-
----
-
-### 👥 기여도
-프론트엔드(vue.js) 개발부터 백엔드, 배포 100% 기여
-
-- [서비스 배포 링크](https://search-info.n-e.kr/#/)
-
-- [프로젝트 관련 포스팅](https://github.com/jps091/search-info/wiki)
-
-- [vue.js Github](https://github.com/jps091/search-info-client)
 
 ---
 
@@ -85,10 +85,14 @@ search
 ```
 ---
 
-### ☁ AWS 기반 배포
+### 💼 ERD
 
-<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/d5c45f8e-8700-447a-969b-086e1c9d37c8" />
- 
+**해당 프로젝트의 테이블 관계는 비교적 단순합니다. 하지만 몇 가지 테이블은 테이블 파티셔닝을 고려하여 외래키 대신 단순 참조 형식으로 설계되었습니다.**
+- search 테이블: search_keyword 필드는 원래 chat_rooms 테이블의 외래키로 설정되어야 하지만, 파티셔닝을 적용하기 위해 단순 참조 방식으로 관리됩니다.
+- chat_rooms 및 chat_messages 테이블: chat_room_id 역시 외래키로 설정하는 대신, 단순 참조 형식으로 설계되었습니다.
+
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/79e10cb3-61ee-4fa7-910f-0167e3ed04f4" />
+
 ---
 
 ### 📝 브랜치 목록
@@ -109,7 +113,25 @@ DEFAULT: dev
 - KT-14: 채팅 메시지 관련 API 
 - KT-15: 다중 서버 환경에서 브로드캐스팅을 위한 Redis Pub/Sub 구현
 - KT-16: 12, 15 브랜치에 구현한 기능을 Redisson 기반으로 리팩토링
- 
+
+---
+
+### 🛠 기술 스택
+
+- Backend: Kotiln, Spring Boot 3.2.5, JDBC Template, JPA, Stomp
+- Database: PostgreSQL 15.1, Redis
+- Build Tool: Gradle
+- Version Control: Git, GitHub
+- Infra: EC2, Nginx, SupaBase
+- Containerization: Docker
+- CI/CD: Github Actions, ECR, CodeDeploy, S3
+
+---
+
+### ☁ AWS 기반 배포
+
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/d5c45f8e-8700-447a-969b-086e1c9d37c8" />
+  
 ---
 
 ### 🚀 기능 구현 화면
@@ -139,20 +161,10 @@ DEFAULT: dev
 
 ### 📓 프로젝트 회고
 
-지금까지 서비스를 개발하면서, 성능이 좋아진다고 생각되면 경험을 쌓기 위해 기술을 도입했었습니다. 
+이번 프로젝트를 진행하면서 Nginx를 리버스 프록시로 사용하여 로드밸런싱, SSL/TLS 적용, 정적 파일 서빙, IP 기반 요청수 제한 등 다양한 기능을 구현하며 Nginx 웹 서버에 대한 이해도를 크게 향상시킬 수 있었습니다.
 
-하지만 성능에 대한 추상적인 느낌만 존재하였습니다. 
+또한, 성능 최적화에 대해 처음엔 막연하게 "빠르게" 해야 한다는 생각을 가지고 있었으나, 1,000만 건의 요청을 처리하는 과정에서 데이터 기반의 최적화를 통해 성능 개선의 감각을 구체적이고 실질적인 경험으로 전환할 수 있었습니다.
 
-1,000만 건의 요청이라는 숫자가 처음엔 막연하게 크게 느껴졌지만, 데이터를 기반으로 한 최적화 과정을 통해 막연했던 성능 개선의 감각을 구체적이고 실질적인 경험으로 전환할 수 있었습니다.
+Open API 연동에서는 API 호출 비용을 최적화하고 장애 대응을 고려한 설계를 통해 실무에서 발생할 수 있는 상황들을 경험할 수 있엇고, 웹소켓을 활용한 실시간 채팅 기능을 구현하면서 통신 프로토콜의 차이와 Stomp 프로토콜 사용법을 학습하여 실제 서비스를 구축하는 데 있어 중요한 기술적 통찰을 얻었습니다.
 
----
-
-### 🛠 기술 스택
-
-- Backend: Kotiln, Spring Boot 3.2.5, JDBC Template, JPA, Stomp
-- Database: PostgreSQL 15.1, Redis
-- Build Tool: Gradle
-- Version Control: Git, GitHub
-- Infra: EC2, Nginx, SupaBase
-- Containerization: Docker
-- CI/CD: Github Actions, ECR, CodeDeploy, S3
+마지막으로, Vue.js를 통한 프론트엔드 개발 과정에서 axios 기반의 API 통신을 깊이 있게 학습하며, 프론트엔드와 백엔드 간의 원활한 데이터 흐름을 구현하는 데 필요한 기술적 이해를 높일 수 있었습니다.
