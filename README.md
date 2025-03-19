@@ -3,13 +3,13 @@
 ### 📖 목 차
 1. [프로젝트 개요](https://github.com/jps091/search-info?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94)
 2. [프로젝트 기여도](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%97%AC%EB%8F%84)
-3. [요구사항 시나리오 TPS 분석](https://github.com/jps091/search-info?tab=readme-ov-file#%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4-%EA%B5%AC%EC%B2%B4%ED%99%94)
+3. [시나리오 TPS 분석](https://github.com/jps091/search-info?tab=readme-ov-file#%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4-%EA%B5%AC%EC%B2%B4%ED%99%94)
 4. [요구사항](https://github.com/jps091/search-info?tab=readme-ov-file#-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD)
 5. [프로젝트 구조](https://github.com/jps091/search-info?tab=readme-ov-file#-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0)
-6. [ERD 설계](https://github.com/jps091/search-info#-erd)
-7. [브랜치 목록](https://github.com/jps091/search-info?tab=readme-ov-file#-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%AA%A9%EB%A1%9D)
-8. [기술 스택](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
-9. [시스템 아키텍쳐](https://github.com/jps091/search-info?tab=readme-ov-file#-aws-%EA%B8%B0%EB%B0%98-%EB%B0%B0%ED%8F%AC)
+6. [브랜치 목록](https://github.com/jps091/search-info?tab=readme-ov-file#-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%AA%A9%EB%A1%9D)
+7. [기술 스택](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
+8. [시스템 아키텍쳐](https://github.com/jps091/search-info?tab=readme-ov-file#-aws-%EA%B8%B0%EB%B0%98-%EB%B0%B0%ED%8F%AC)
+9. [데이터베이스 설계](https://github.com/jps091/search-info?tab=readme-ov-file#-erd)
 10. [기능 구현 화면](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%ED%99%94%EB%A9%B4)
 11. [프로젝트 회고](https://github.com/jps091/search-info?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0)
 
@@ -28,7 +28,7 @@
 ---
 
 ### 👥 기여도
-프론트엔드(vue.js) 개발부터 백엔드, 배포 100% 기여
+**프론트엔드(vue.js) 개발부터 백엔드, 배포까지 모든 과정 100% 기여**
 
 - [서비스 배포 링크](https://search-info.n-e.kr/#/)
 
@@ -88,8 +88,7 @@ search
 **2. 관련 모듈 의존성 파일**
 - common Gradle 파일은 최상위 Gradle 설정을 그대로 가져가기 때문에 존재하지 않음
 
-<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/040189f8-6843-4727-b96e-d91d41868fe3" />
-
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/40e4da0f-e0c5-4557-8072-1d45ae185c8c" />
 
 ---
 
@@ -128,7 +127,7 @@ DEFAULT: dev
 
 - Backend: Kotiln, Spring Boot 3.2.5, JDBC Template, JPA, Stomp
 - Test: JUnit5, Spock
-- Database: PostgreSQL 15.1, Redis
+- Database: PostgreSQL 15.1, Redis, Caffeine
 - Build Tool: Gradle
 - Version Control: Git, GitHub
 - Infra: EC2, Nginx, SupaBase
