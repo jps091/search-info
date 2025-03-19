@@ -28,13 +28,13 @@
 ---
 
 ### 👥 기여도
-**프론트엔드(vue.js) 개발부터 백엔드, 배포까지 모든 과정 100% 기여**
+**프론트엔드(Vue.js) 개발부터 백엔드, 배포까지 모든 과정 100% 기여**
 
 - [서비스 배포 링크](https://search-info.n-e.kr/#/)
 
 - [프로젝트 관련 포스팅](https://github.com/jps091/search-info/wiki)
 
-- [vue.js Github](https://github.com/jps091/search-info-client)
+- [Vue.js Github](https://github.com/jps091/search-info-client) : 클라이언트 코드를 빌드하여 Nginx로 서빙하고, 백엔드와 연결하여 배포 완료
 
 ---
 
@@ -92,16 +92,6 @@ search
 
 ---
 
-### 💼 ERD
-
-**해당 프로젝트의 테이블 관계는 비교적 단순합니다. 하지만 몇 가지 테이블은 테이블 파티셔닝을 고려하여 외래키 대신 단순 참조 형식으로 설계되었습니다.**
-- search 테이블: search_keyword 필드는 원래 chat_rooms 테이블의 외래키로 설정되어야 하지만, 파티셔닝을 적용하기 위해 단순 참조 방식으로 관리됩니다.
-- chat_rooms 및 chat_messages 테이블: chat_room_id 역시 외래키로 설정하는 대신, 단순 참조 형식으로 설계되었습니다.
-
-<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/79e10cb3-61ee-4fa7-910f-0167e3ed04f4" />
-
----
-
 ### 📝 브랜치 목록
 DEFAULT: dev
 - KT-1: external 모듈 마이그레이션
@@ -125,11 +115,11 @@ DEFAULT: dev
 
 ### 🛠 기술 스택
 
-- Backend: Kotiln, Spring Boot 3.2.5, JDBC Template, JPA, Stomp
+- Backend: Kotiln, Spring Boot, JDBC Template, JPA, Stomp, Resilience4j
+- Frontend: Vue.js
 - Test: JUnit5, Spock
-- Database: PostgreSQL 15.1, Redis, Caffeine
-- Build Tool: Gradle
-- Version Control: Git, GitHub
+- Database: PostgreSQL, Redis, Caffeine
+- Load Test: JMeter, PostMan
 - Infra: EC2, Nginx, SupaBase
 - Containerization: Docker
 - CI/CD: Github Actions, ECR, CodeDeploy, S3
@@ -140,6 +130,17 @@ DEFAULT: dev
 
 <img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/d5c45f8e-8700-447a-969b-086e1c9d37c8" />
   
+---
+
+### 💼 데이터베이스 설계
+
+**해당 프로젝트의 테이블 관계는 비교적 단순합니다. 하지만 몇 가지 테이블은 테이블 파티셔닝을 고려하여 외래키 대신 단순 참조 형식으로 설계되었습니다.**
+
+- search 테이블: search_keyword 필드는 원래 chat_rooms 테이블의 외래키로 설정되어야 하지만, 파티셔닝을 적용하기 위해 단순 참조 방식으로 관리됩니다.
+- chat_rooms 및 chat_messages 테이블: chat_room_id 역시 외래키로 설정하는 대신, 단순 참조 형식으로 설계되었습니다.
+
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/79e10cb3-61ee-4fa7-910f-0167e3ed04f4" />
+
 ---
 
 ### 🚀 기능 구현 화면
