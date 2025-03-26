@@ -110,6 +110,24 @@ DEFAULT: dev
 - KT-14: 채팅 메시지 관련 API 
 - KT-15: 다중 서버 환경에서 브로드캐스팅을 위한 Redis Pub/Sub 구현
 - KT-16: 12, 15 브랜치에 구현한 기능을 Redisson 기반으로 리팩토링
+- KT-17: 테스트코드 재구성
+---
+
+### 🗂 프로젝트 구조
+- 멀티 모듈 구조 COMMON, NEWS-API, EXTERNAL(NAVER, KAKAO) 
+
+```markdown
+search
+├── common # 공통 모듈
+├── external # 외부 API 모듈
+│   └── naver-api # 네이버 API 서버 모듈
+│   └── kakao-api # 카카오 API 서버 모듈
+└── news-api # 검색 서비스 모듈
+```
+---
+
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/d5c45f8e-8700-447a-969b-086e1c9d37c8" />
+>>>>>>> d7548ca (test: Test Code 재구성)
 
 ---
 

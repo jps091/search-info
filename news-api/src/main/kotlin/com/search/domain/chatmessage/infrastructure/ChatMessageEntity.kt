@@ -1,6 +1,5 @@
 package com.search.domain.chatmessage.infrastructure
 
-import com.search.domain.chatroom.infrastructure.ChatRoomEntity
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotNull
 import org.springframework.data.annotation.CreatedDate
