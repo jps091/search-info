@@ -46,7 +46,7 @@
 
 **1일 필요 저장 공간**(1건의 요청당 발생하는 데이터 최대 200Byte) → **5MB(인덱스 고려)**
 
-**요구 TPS**(24시간 중 8시간 요청 발생) → 27,400건 / 28,800(8시간 초) = **2TPS(피크 타임 고려)**
+**요구 TPS**(24시간 중 8시간 요청 발생) → 27,400건 / 28,800(8시간 초) = **2TPS(피크 타임 12:00 ~ 13:00)**
 
 </aside>
 
@@ -126,11 +126,6 @@ search
 ```
 ---
 
-<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/d5c45f8e-8700-447a-969b-086e1c9d37c8" />
->>>>>>> d7548ca (test: Test Code 재구성)
-
----
-
 ### 🛠 기술 스택
 
 - Backend: Kotiln, Spring Boot, JDBC Template, JPA, Stomp, Resilience4j
@@ -146,7 +141,7 @@ search
 
 ### ☁ AWS 기반 배포
 
-<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/d5c45f8e-8700-447a-969b-086e1c9d37c8" />
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/94a33cc7-75a0-4e61-928c-005b420ce5a6" />
   
 ---
 
