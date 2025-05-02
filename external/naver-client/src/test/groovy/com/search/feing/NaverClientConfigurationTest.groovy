@@ -1,14 +1,17 @@
 package com.search.feing
 
+import com.search.config.apikey.NaverApiKeyManagerIfs
+import com.search.config.apikey.NaverProperties
 import com.search.config.feign.NaverClientConfiguration
 import feign.RequestTemplate
 import spock.lang.Specification
 
 class NaverClientConfigurationTest extends Specification {
     NaverClientConfiguration configuration
+    NaverApiKeyManagerIfs naverApiKeyManagerIfs = Mock()
 
     void setup(){
-        configuration = new NaverClientConfiguration()
+        configuration = new NaverClientConfiguration(naverApiKeyManagerIfs)
     }
 
     def "requestInterceptor의 header에 key값들이 적용된다."(){
@@ -21,8 +24,16 @@ class NaverClientConfigurationTest extends Specification {
         template.headers()["X-Naver-Client-Id"] == null
         template.headers()["X-Naver-Client-Secret"] == null
 
-        when: "interceptorfmf 탄다."
-        def interceptor = configuration.requestInterceptor(clientId, clientSecret)
+
+        def mockHeader = Mock(NaverProperties.Header){
+            getClientId() >> clientId
+            getClientSecret() >> clientSecret
+        }
+
+        naverApiKeyManagerIfs.getCurrentApiKey() >> mockHeader
+
+        when: "interceptor를 탄다."
+        def interceptor = configuration.requestInterceptor()
         interceptor.apply(template)
 
         then: "interceptor를 탄 이후에는 header가 추가 된다."
