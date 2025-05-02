@@ -2,7 +2,6 @@ package com.search.config.feign
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.search.config.apikey.NaverApiKeyManagerIfs
-import com.search.config.apikey.local.NaverApiKeyManager
 import com.search.feign.NaverErrorDecoder
 import feign.RequestInterceptor
 import org.springframework.context.annotation.Bean
