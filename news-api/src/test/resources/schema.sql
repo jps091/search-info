@@ -18,5 +18,5 @@ CREATE TABLE IF NOT EXISTS search_info(
                                             id INT AUTO_INCREMENT PRIMARY KEY,
                                             search_count INT NOT NULL,
                                             event_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-                                            query VARCHAR(200) NOT NULL,
+                                            query VARCHAR(200) NOT NULL
     );

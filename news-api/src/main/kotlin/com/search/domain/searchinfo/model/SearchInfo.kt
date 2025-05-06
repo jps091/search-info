@@ -8,6 +8,7 @@ class SearchInfo private constructor(
         val query: String,
         val eventDateTime: LocalDateTime
 ) { companion object{
+        @JvmStatic
         fun create(query: String, eventDateTime: LocalDateTime): SearchInfo {
             require(query.isNotBlank()) { "Query cannot be blank" }
             return SearchInfo(
@@ -17,7 +18,7 @@ class SearchInfo private constructor(
                     eventDateTime = eventDateTime
                 )
             }
-
+        @JvmStatic
         fun createList(queryList: List<String>, eventDateTime: LocalDateTime): List<SearchInfo> {
             return queryList.map { query -> create(query, eventDateTime) }
         }
