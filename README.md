@@ -141,8 +141,8 @@ search
 
 ### ☁ AWS 기반 배포
 
-<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/94a33cc7-75a0-4e61-928c-005b420ce5a6" />
-  
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/b136cec2-1aa5-4b61-bae6-df24e4996708" />
+
 ---
 
 ### 💼 데이터베이스 설계
