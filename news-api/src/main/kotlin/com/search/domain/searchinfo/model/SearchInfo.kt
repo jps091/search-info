@@ -24,3 +24,4 @@ class SearchInfo private constructor(
         }
     }
 }
+
