@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
 @Component
-@Profile("local", "prod")
+@Profile("local", "prod", "test")
 class NaverApiKeyManager(
         private val apiCallCache: Cache<String, Int>,
         private val naverProperties: NaverProperties // 설정값 주입
