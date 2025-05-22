@@ -31,7 +31,7 @@ class WebSearchController(
     @GetMapping("/ranking")
     @RateLimiter(name = "apiRateLimiter")
     fun findTopStats(): List<TopRankResponse>{
-        log.info("webApplicationService.findTopQuery={}", webApplicationService.findTopQuery())
+        //log.info("webApplicationService.findTopQuery={}", webApplicationService.findTopQuery())
         return webApplicationService.findTopQuery()
     }
 }
