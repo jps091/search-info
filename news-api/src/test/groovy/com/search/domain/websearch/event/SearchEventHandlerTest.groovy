@@ -55,4 +55,23 @@ class SearchEventHandlerTest extends Specification {
         0 * commandRepository.increaseSearchCount(_)
         0 * sseConnectionPool.sendToAll(_, _)
     }
+
+//    def "savedQueryList가 존재한다면, 저장과 Count를 증가시킨다."(){
+//        given:
+//        def now = LocalDateTime.now()
+//        def eventRequest = new EventRequest("HTTP JAVA", now)
+//        def topList = List.of(new TopQueryResult("HTTP", 10), new TopQueryResult("JAVA", 1))
+//
+//        queryRepository.findByQueryList(_ as List<String>) >> List.of(new SearchInfoQueryResult(1, "HTTP"))
+//        queryRepository.findTopQuery() >> topList TODO Mocking을 헀지만 NPE 발생 (원인파악필요)
+//
+//        when:
+//        eventHandler.handleDatabaseEvent(eventRequest)
+//
+//        then:
+//        1 * commandRepository.saveAll(_)
+//        2 * queryRepository.findTopQuery()
+//        1 * commandRepository.increaseSearchCount(_)
+//        0 * sseConnectionPool.sendToAll(_, _)
+//    }
 }
