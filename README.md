@@ -141,7 +141,10 @@ search
 
 ### ☁ AWS 기반 배포
 
-<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/b136cec2-1aa5-4b61-bae6-df24e4996708" />
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/944b14e5-6508-471a-b64d-a7d259cbc972" /></br>
+
+
+<img width="600" height="200" alt="image" src="https://github.com/user-attachments/assets/1b64c24f-d4f4-491f-bd0c-13e87eab8d58" />
 
 ---
 
@@ -158,7 +161,8 @@ search
 
 ### 🚀 기능 구현 화면
 
-<img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/717808c6-0802-47c8-8600-121f81af1393" /></br>
+<img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/5fcb3fea-545b-4f05-a451-9d6829fa3ff6" /></br>
+
 
 <img width="900" height="500" alt="image" src="https://github.com/user-attachments/assets/f6c9b80c-2ae0-457c-bd9f-5be46df838de" />
 
