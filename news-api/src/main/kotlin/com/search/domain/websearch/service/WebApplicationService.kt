@@ -7,7 +7,8 @@ import com.search.domain.websearch.controller.response.SearchResponse
 import com.search.domain.websearch.infrastructure.result.WebSearchPageResult
 import com.search.domain.websearch.infrastructure.result.WebSearchResult
 import com.search.domain.searchinfo.infrastructure.result.TopQueryResult
-import com.search.domain.websearch.controller.request.SummaryRequest
+import com.search.domain.websearch.controller.request.SummaryItem
+import com.search.domain.websearch.controller.request.SummaryData
 import com.search.domain.websearch.controller.response.TopRankResponse
 import com.search.domain.websearch.event.EventRequest
 import org.slf4j.LoggerFactory
@@ -22,7 +23,7 @@ class WebApplicationService(
         val webQueryService: WebQueryService,
         val searchInfoQueryRepository: SearchInfoQueryRepository,
         val eventPublisher: ApplicationEventPublisher,
-        val newsSummaryCache: Cache<String, List<String>>
+        val newsSummaryCache: Cache<String, List<SummaryItem>>
 ) {
 
     private val log = LoggerFactory.getLogger(this::class.java)
@@ -41,13 +42,13 @@ class WebApplicationService(
         return result.map{ toTopRankResponse(it) }
     }
 
-    fun saveSummaryNews(news: SummaryRequest){
-        newsSummaryCache.put("today", news.summaryList)
+    fun saveSummaryNews(news: SummaryData){
+        newsSummaryCache.put("today", news.results)
     }
 
-    fun getTodaySummary(): List<String> {
-        return newsSummaryCache.getIfPresent("today")
-            ?: listOf("내용이 없습니다")
+    fun getTodaySummary(): SummaryData {
+        val summaryItems = newsSummaryCache.getIfPresent("today") ?: emptyList()
+        return SummaryData(summaryItems)
     }
 
     private fun isNotEmptyResult(result: WebSearchPageResult<WebSearchResult>): Boolean{
