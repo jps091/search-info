@@ -9,7 +9,7 @@
 6. [브랜치 목록](https://github.com/jps091/search-info?tab=readme-ov-file#-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%AA%A9%EB%A1%9D)
 7. [기술 스택](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
 8. [시스템 아키텍쳐](https://github.com/jps091/search-info?tab=readme-ov-file#-aws-%EA%B8%B0%EB%B0%98-%EB%B0%B0%ED%8F%AC)
-9. [N8N 워크플로우](https://github.com/jps091/search-info/edit/dev/README.md#-n8n-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0)
+9. [N8N 워크플로우](https://github.com/jps091/search-info?tab=readme-ov-file#-n8n-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0)
 10. [데이터베이스 설계](https://github.com/jps091/search-info?tab=readme-ov-file#-erd)
 11. [기능 구현 화면](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%ED%99%94%EB%A9%B4)
 12. [프로젝트 회고](https://github.com/jps091/search-info?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0)
