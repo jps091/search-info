@@ -9,9 +9,10 @@
 6. [브랜치 목록](https://github.com/jps091/search-info?tab=readme-ov-file#-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%AA%A9%EB%A1%9D)
 7. [기술 스택](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EC%88%A0-%EC%8A%A4%ED%83%9D)
 8. [시스템 아키텍쳐](https://github.com/jps091/search-info?tab=readme-ov-file#-aws-%EA%B8%B0%EB%B0%98-%EB%B0%B0%ED%8F%AC)
-9. [데이터베이스 설계](https://github.com/jps091/search-info?tab=readme-ov-file#-erd)
-10. [기능 구현 화면](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%ED%99%94%EB%A9%B4)
-11. [프로젝트 회고](https://github.com/jps091/search-info?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0)
+9. [N8N 워크플로우](https://github.com/jps091/search-info/edit/dev/README.md#-n8n-%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0)
+10. [데이터베이스 설계](https://github.com/jps091/search-info?tab=readme-ov-file#-erd)
+11. [기능 구현 화면](https://github.com/jps091/search-info?tab=readme-ov-file#-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84-%ED%99%94%EB%A9%B4)
+12. [프로젝트 회고](https://github.com/jps091/search-info?tab=readme-ov-file#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0)
 
 ---
 
@@ -114,6 +115,7 @@ DEFAULT: dev
 - KT-16: 12, 15 브랜치에 구현한 기능을 Redisson 기반으로 리팩토링
 - KT-17: 테스트코드 재구성
 - KT-18: n8n을 통한 뉴스 제공 API 구성
+- KT-19: KT-18 API 스펙 수정
 ---
 
 ### 🗂 프로젝트 구조
@@ -146,8 +148,18 @@ search
 
 <img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/944b14e5-6508-471a-b64d-a7d259cbc972" /></br>
 
+---
 
-<img width="600" height="200" alt="image" src="https://github.com/user-attachments/assets/1b64c24f-d4f4-491f-bd0c-13e87eab8d58" />
+### ⛓ N8N 워크플로우
+
+<img width="600" height="200" alt="image" src="https://github.com/user-attachments/assets/19d3e595-9f44-4080-af9b-720890fc3f83" />
+
+1. AM 08:55 워크플로우 트리거 자동 실행
+2. NEWS XML을 통해 뉴스 수집
+3. Filter 노드를 통해 최신 50개만 필터링
+4. AI 에이전트에서 GPT가 search-tool(Google Web API)를 참고하면서 IT관련 뉴스 3개 선별
+5. result-formmating 노드를 통해 백엔드 서버에 보낼 JSON 규격으로 데이터 변형
+6. server-request 백엔드 서버에 요청
 
 ---
 
